@@ -1,4 +1,4 @@
-import { trie } from "./trie";
+import { trie } from "./trie.js";
 
 export function isKnown(word) {
   let current = trie;

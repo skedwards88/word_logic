@@ -1,5 +1,5 @@
-import { getSurroundingIndexes } from "./getSurroundingIndexes";
-import { isKnown } from "./isKnown";
+import { getSurroundingIndexes } from "./getSurroundingIndexes.js";
+import { isKnown } from "./isKnown.js";
 
 export function findAllWordIndexes({
   grid,

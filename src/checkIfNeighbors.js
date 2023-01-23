@@ -1,4 +1,4 @@
-import { getSurroundingIndexes } from "./getSurroundingIndexes";
+import { getSurroundingIndexes } from "./getSurroundingIndexes.js";
 
 export function checkIfNeighbors({ indexA, indexB, gridSize }) {
   // Check if two indexes are neighbors in a grid

@@ -1,4 +1,4 @@
-import { isKnown } from "./isKnown";
+import { isKnown } from "./isKnown.js";
 
 function getSurroundingLetterIndexes({
   startingIndex,
