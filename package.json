@@ -1,0 +1,29 @@
+{
+  "name": "word_logic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skedwards88/word_logic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skedwards88/word_logic/issues"
+  },
+  "homepage": "https://github.com/skedwards88/word_logic#readme",
+  "dependencies": {
+    "@skedwards88/word_lists": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1"
+  }
+}
