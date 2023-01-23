@@ -1,8 +1,11 @@
 name: Create package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - 'README.md'
+      - 'TODO.md'
   workflow_dispatch:
 
 jobs:
