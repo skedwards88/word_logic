@@ -1,7 +1,7 @@
 {
-  "name": "word_logic",
+  "name": "@skedwards88/word_logic",
   "version": "1.0.0",
-  "description": "",
+  "description": "A collection of word-related functions.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/skedwards88/word_logic.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "skedwards88",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/skedwards88/word_logic/issues"
