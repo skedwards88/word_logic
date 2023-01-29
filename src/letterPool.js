@@ -1,21 +1,9 @@
-import { commonWords, uncommonWords } from "@skedwards88/word_lists";
-
-export function getLetterPool() {
+export function getLetterPool(words) {
   let letterDistribution = {};
   let totalLetters = 0;
 
   // Get the letter counts
-  for (let word of uncommonWords) {
-    const letters = word.split("");
-    letters.forEach((letter) => {
-      letterDistribution[letter] = letterDistribution[letter]
-        ? (letterDistribution[letter] += 1)
-        : 1;
-      totalLetters += 1;
-    });
-  }
-
-  for (let word of commonWords) {
+  for (let word of words) {
     const letters = word.split("");
     letters.forEach((letter) => {
       letterDistribution[letter] = letterDistribution[letter]
@@ -58,5 +46,3 @@ export function getLetterPool() {
 
   return representativeLetters;
 }
-
-export const letterPool = getLetterPool();

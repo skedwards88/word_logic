@@ -1,6 +1,6 @@
-import { commonWords, uncommonWords } from "@skedwards88/word_lists";
-
-export function getTrie() {
+export function getTrie(commonWords, uncommonWords) {
+  console.log('building trie')
+  
   let trie = {};
   for (let word of uncommonWords) {
     let current = trie;
@@ -27,5 +27,3 @@ export function getTrie() {
 
   return trie;
 }
-
-export const trie = getTrie();

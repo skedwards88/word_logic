@@ -76,7 +76,7 @@ function isSingleGroupingQ(grid) {
   return numLetters === connectedIndexes.length;
 }
 
-export function crosswordValidQ({ grid }) {
+export function crosswordValidQ({ grid, trie }) {
   const isSingleGrouping = isSingleGroupingQ(grid);
   if (!isSingleGrouping) {
     return {
@@ -110,7 +110,7 @@ export function crosswordValidQ({ grid }) {
           !character.match("^[A-Z]$"))
       ) {
         if (currentWord.length > 1) {
-          const { isWord } = isKnown(currentWord);
+          const { isWord } = isKnown(currentWord, trie);
           if (!isWord) {
             return {
               gameIsSolved: false,

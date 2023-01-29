@@ -11,7 +11,7 @@ test("the shuffled array is not the same order", () => {
   // This could be a flaky test.
   // Making a larger array or having multiple calls
   // would make that less likely.
-  const original = [1, 2, 3, 4, 5];
+  const original = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   const shuffled = shuffleArray(original);
 
   expect(original).not.toEqual(shuffled);
