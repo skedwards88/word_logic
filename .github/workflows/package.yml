@@ -8,6 +8,9 @@ on:
       - 'TODO.md'
   workflow_dispatch:
 
+permissions:
+  contents: write # Required for bumping version
+    
 jobs:
   publish:
     runs-on: ubuntu-latest
