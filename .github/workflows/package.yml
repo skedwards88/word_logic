@@ -19,6 +19,12 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
+      - name: Setup git config
+        run: |
+          git config --global user.name "skedwards88"
+          git config --global user.email "skedwards88@gmail.com"
+      - name: Bump version
+        run: npm version patch
       - run: npm ci
       - run: npm test
       - run: npm publish --access public
