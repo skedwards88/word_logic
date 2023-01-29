@@ -6,6 +6,7 @@ export function findAllWordIndexes({
   minWordLength,
   maxWordLength = 30,
   easyMode,
+  trie
 }) {
   let foundWordIndexes = [];
 
@@ -22,7 +23,7 @@ export function findAllWordIndexes({
       }
       const newWordIndexes = [...wordIndexes, surroundingIndex];
       const newWord = newWordIndexes.map((index) => grid[index]).join("");
-      const { isPartial, isWord, isEasy } = isKnown(newWord);
+      const { isPartial, isWord, isEasy } = isKnown(newWord, trie);
 
       if (easyMode) {
         if (
@@ -63,12 +64,14 @@ export function findAllWords({
   minWordLength,
   maxWordLength = 30,
   easyMode,
+  trie,
 }) {
   const foundWordIndexes = findAllWordIndexes({
     grid: grid,
     minWordLength: minWordLength,
     maxWordLength: maxWordLength,
     easyMode: easyMode,
+    trie: trie,
   });
   const foundWords = foundWordIndexes.map((indexList) =>
     indexList.map((index) => grid[index]).join("")

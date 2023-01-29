@@ -1,6 +1,4 @@
-import { trie } from "./trie.js";
-
-export function isKnown(word) {
+export function isKnown(word, trie) {
   let current = trie;
   for (let letter of word) {
     if (current[letter]) {

@@ -1,9 +1,19 @@
 import { getTrie } from "./trie";
 
-jest.mock("@skedwards88/word_lists");
+const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
+const uncommonWords = [
+  "NATURE",
+  "CAMPERS",
+  "SOLITUDE",
+  "HAPPINESS",
+  "CAMPERVANS",
+  "SCAMPER",
+  "SCAMPERS",
+  "CAMPER",
+];
 
 test("Trie builds as expected", () => {
-  const trie = getTrie();
+  const trie = getTrie(commonWords, uncommonWords);
 
   const expectedTrie = {
     N: {

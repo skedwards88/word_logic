@@ -17,9 +17,6 @@
     "url": "https://github.com/skedwards88/word_logic/issues"
   },
   "homepage": "https://github.com/skedwards88/word_logic#readme",
-  "dependencies": {
-    "@skedwards88/word_lists": "^2.1.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",

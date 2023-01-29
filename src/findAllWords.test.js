@@ -1,6 +1,18 @@
 import { findAllWords } from "./findAllWords";
+import { getTrie } from "./trie";
 
-jest.mock("@skedwards88/word_lists");
+const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
+const uncommonWords = [
+  "NATURE",
+  "CAMPERS",
+  "SOLITUDE",
+  "HAPPINESS",
+  "CAMPERVANS",
+  "SCAMPER",
+  "SCAMPERS",
+  "CAMPER",
+];
+const trie = getTrie(commonWords, uncommonWords);
 
 test("Easy mode, min length 4", () => {
   const grid = [
@@ -25,6 +37,7 @@ test("Easy mode, min length 4", () => {
     grid: grid,
     minWordLength: 4,
     easyMode: true,
+    trie: trie,
   });
   const expected = ["CAMP", "QUIET"];
 
@@ -55,6 +68,7 @@ test("Hard mode, min length 4", () => {
     grid: grid,
     minWordLength: 4,
     easyMode: false,
+    trie: trie,
   });
 
   const expected = ["CAMP", "QUIET", "CAMPER", "SCAMPER"];
@@ -86,6 +100,7 @@ test("Easy mode, min length 3", () => {
     grid: grid,
     minWordLength: 3,
     easyMode: true,
+    trie: trie,
   });
 
   const expected = ["CAMP", "QUIET", "LET"];
@@ -117,6 +132,7 @@ test("Hard mode, min length 3", () => {
     grid: grid,
     minWordLength: 3,
     easyMode: false,
+    trie: trie,
   });
 
   const expected = ["CAMP", "QUIET", "CAMPER", "SCAMPER", "LET"];
