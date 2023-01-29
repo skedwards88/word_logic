@@ -1,5 +1,5 @@
 import { findAllWords } from "./findAllWords";
-import { getTrie } from "./trie";
+import { getTrie } from "./getTrie";
 
 const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [
