@@ -1,4 +1,5 @@
 import { isKnown } from "./isKnown.js";
+import { transposeGrid } from "./transposeGrid.js";
 
 function getSurroundingLetterIndexes({
   startingIndex,
@@ -85,7 +86,7 @@ export function crosswordValidQ({ grid, trie }) {
     };
   }
 
-  const transposedGrid = grid.map((_, index) => grid.map((row) => row[index]));
+  const transposedGrid = transposeGrid(grid);
   const jointGrid = [...grid, ...transposedGrid];
   for (let rowIndex = 0; rowIndex < jointGrid.length; rowIndex++) {
     let currentWord = "";
