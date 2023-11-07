@@ -76,7 +76,7 @@ function isSingleGroupingQ(grid) {
   return numLetters === connectedIndexes.length;
 }
 
-export function crosswordValidQ({ grid, trie }) {
+export function crosswordValidQ({ grid, trie, exceptedWords = [] }) {
   const isSingleGrouping = isSingleGroupingQ(grid);
   if (!isSingleGrouping) {
     return {
@@ -110,7 +110,13 @@ export function crosswordValidQ({ grid, trie }) {
           !character.match("^[A-Z]$"))
       ) {
         if (currentWord.length > 1) {
-          const { isWord } = isKnown(currentWord, trie);
+          // If the word is one of the excepted words, always consider it valid.
+          // Otherwise, check whether it is a word in the trie.
+          let isWord = exceptedWords.includes(currentWord);
+          if (!isWord) {
+            ({ isWord } = isKnown(currentWord, trie));
+          }
+
           if (!isWord) {
             return {
               gameIsSolved: false,
