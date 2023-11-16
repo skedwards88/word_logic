@@ -2,16 +2,18 @@ import { getSurroundingIndexes } from "./getSurroundingIndexes.js";
 import { isKnown } from "./isKnown.js";
 
 export function findAllWordIndexes({
-  grid,
+  letters,
+  numColumns,
+  numRows,
   minWordLength,
   maxWordLength = 30,
   easyMode,
-  trie
+  trie,
 }) {
   let foundWordIndexes = [];
 
-  const neighborIndexes = grid.map((_, index) =>
-    getSurroundingIndexes({ index: index, gridSize: Math.sqrt(grid.length) })
+  const neighborIndexes = letters.map((_, index) =>
+    getSurroundingIndexes({ index: index, numColumns, numRows })
   );
 
   function checkSurrounding(currentIndex, wordIndexes, visitedIndexes) {
@@ -22,7 +24,7 @@ export function findAllWordIndexes({
         continue;
       }
       const newWordIndexes = [...wordIndexes, surroundingIndex];
-      const newWord = newWordIndexes.map((index) => grid[index]).join("");
+      const newWord = newWordIndexes.map((index) => letters[index]).join("");
       const { isPartial, isWord, isEasy } = isKnown(newWord, trie);
 
       if (easyMode) {
@@ -52,7 +54,7 @@ export function findAllWordIndexes({
     }
   }
 
-  for (let startingIndex = 0; startingIndex < grid.length; startingIndex++) {
+  for (let startingIndex = 0; startingIndex < letters.length; startingIndex++) {
     checkSurrounding(startingIndex, [startingIndex], [startingIndex]);
   }
 
@@ -60,21 +62,25 @@ export function findAllWordIndexes({
 }
 
 export function findAllWords({
-  grid,
+  letters,
+  numColumns,
+  numRows,
   minWordLength,
   maxWordLength = 30,
   easyMode,
   trie,
 }) {
   const foundWordIndexes = findAllWordIndexes({
-    grid: grid,
+    letters: letters,
+    numColumns: numColumns,
+    numRows: numRows,
     minWordLength: minWordLength,
     maxWordLength: maxWordLength,
     easyMode: easyMode,
     trie: trie,
   });
   const foundWords = foundWordIndexes.map((indexList) =>
-    indexList.map((index) => grid[index]).join("")
+    indexList.map((index) => letters[index]).join("")
   );
   const uniqueFoundWords = new Set(foundWords);
 
