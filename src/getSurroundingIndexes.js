@@ -1,6 +1,6 @@
-export function getSurroundingIndexes({ index, gridSize }) {
-  const column = index % gridSize;
-  const row = Math.floor(index / gridSize);
+export function getSurroundingIndexes({ index, numColumns, numRows }) {
+  const column = index % numColumns;
+  const row = Math.floor(index / numColumns);
   let surroundingIndexes = [];
   for (let currentRow = row - 1; currentRow <= row + 1; currentRow++) {
     for (
@@ -11,10 +11,10 @@ export function getSurroundingIndexes({ index, gridSize }) {
       if (
         currentRow >= 0 &&
         currentColumn >= 0 &&
-        currentRow < gridSize &&
-        currentColumn < gridSize
+        currentRow < numRows &&
+        currentColumn < numColumns
       ) {
-        const currentIndex = currentColumn + currentRow * gridSize;
+        const currentIndex = currentColumn + currentRow * numColumns;
         surroundingIndexes.push(currentIndex);
       }
     }
