@@ -11,3 +11,4 @@ export {partitionArray} from "./src/partitionArray.js";
 export {shuffleArray} from "./src/shuffleArray.js";
 export {sortLettersBy} from "./src/sortLetters.js";
 export {transposeGrid} from "./src/transposeGrid.js";
+export {getNLetters} from "./src/getNLetters.js";
