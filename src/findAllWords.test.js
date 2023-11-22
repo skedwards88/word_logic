@@ -1,7 +1,7 @@
-import { findAllWords } from "./findAllWords";
-import { getTrie } from "./getTrie";
+import {findAllWords} from "./findAllWords";
+import {getTrie} from "./getTrie";
 
-const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
+const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [
   "NATURE",
   "CAMPERS",
@@ -151,10 +151,26 @@ test("Hard mode, min length 3, square grid", () => {
 
 test("Easy mode, min length 4, wider grid", () => {
   const letters = [
-    "O","C","QU","I","W",
-    "S","A","E","T","A",
-    "P","M","L","T","L",
-    "P","E","R","K","K",
+    "O",
+    "C",
+    "QU",
+    "I",
+    "W",
+    "S",
+    "A",
+    "E",
+    "T",
+    "A",
+    "P",
+    "M",
+    "L",
+    "T",
+    "L",
+    "P",
+    "E",
+    "R",
+    "K",
+    "K",
   ];
   const foundWords = findAllWords({
     letters: letters,
@@ -172,11 +188,26 @@ test("Easy mode, min length 4, wider grid", () => {
 
 test("Easy mode, min length 4, taller grid", () => {
   const letters = [
-    "O","C","QU","I",
-    "S","A","E","T",
-    "P","M","L","T",
-    "P","E","R","K",
-    "W","A","L","K"
+    "O",
+    "C",
+    "QU",
+    "I",
+    "S",
+    "A",
+    "E",
+    "T",
+    "P",
+    "M",
+    "L",
+    "T",
+    "P",
+    "E",
+    "R",
+    "K",
+    "W",
+    "A",
+    "L",
+    "K",
   ];
   const foundWords = findAllWords({
     letters: letters,

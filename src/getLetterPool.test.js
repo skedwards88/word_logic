@@ -1,6 +1,6 @@
-import { getLetterPool } from "./getLetterPool";
+import {getLetterPool} from "./getLetterPool";
 
-const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
+const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [
   "NATURE",
   "CAMPERS",

@@ -1,6 +1,6 @@
-import { getTrie } from "./getTrie";
+import {getTrie} from "./getTrie";
 
-const  commonWords = ["WALK", "CAMP", "QUIET", "LET"];
+const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [
   "NATURE",
   "CAMPERS",

@@ -6,7 +6,7 @@ export function shuffleArray(array, pseudoRandomGenerator) {
     // Get a "random" index from 0 to the current index of the array
     // So for an array of length 3, the first round will be 0, 1, or 2, second round 0 or 1, and last round 0
     // The values at this index and the current index will be swapped
-    let swapIndex
+    let swapIndex;
     if (pseudoRandomGenerator) {
       swapIndex = Math.floor(pseudoRandomGenerator() * (index + 1));
     } else {

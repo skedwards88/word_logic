@@ -1,4 +1,4 @@
-export function getSurroundingIndexes({ index, numColumns, numRows }) {
+export function getSurroundingIndexes({index, numColumns, numRows}) {
   const column = index % numColumns;
   const row = Math.floor(index / numColumns);
   let surroundingIndexes = [];

@@ -1,5 +1,5 @@
-import { getSurroundingIndexes } from "./getSurroundingIndexes.js";
-import { isKnown } from "./isKnown.js";
+import {getSurroundingIndexes} from "./getSurroundingIndexes.js";
+import {isKnown} from "./isKnown.js";
 
 export function findAllWordIndexes({
   letters,
@@ -13,7 +13,7 @@ export function findAllWordIndexes({
   let foundWordIndexes = [];
 
   const neighborIndexes = letters.map((_, index) =>
-    getSurroundingIndexes({ index: index, numColumns, numRows })
+    getSurroundingIndexes({index: index, numColumns, numRows}),
   );
 
   function checkSurrounding(currentIndex, wordIndexes, visitedIndexes) {
@@ -25,7 +25,7 @@ export function findAllWordIndexes({
       }
       const newWordIndexes = [...wordIndexes, surroundingIndex];
       const newWord = newWordIndexes.map((index) => letters[index]).join("");
-      const { isPartial, isWord, isEasy } = isKnown(newWord, trie);
+      const {isPartial, isWord, isEasy} = isKnown(newWord, trie);
 
       if (easyMode) {
         if (
@@ -48,7 +48,7 @@ export function findAllWordIndexes({
         checkSurrounding(
           surroundingIndex,
           newWordIndexes,
-          visitedIndexes.concat(surroundingIndex)
+          visitedIndexes.concat(surroundingIndex),
         );
       }
     }
@@ -80,7 +80,7 @@ export function findAllWords({
     trie: trie,
   });
   const foundWords = foundWordIndexes.map((indexList) =>
-    indexList.map((index) => letters[index]).join("")
+    indexList.map((index) => letters[index]).join(""),
   );
   const uniqueFoundWords = new Set(foundWords);
 

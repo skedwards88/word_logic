@@ -33,7 +33,7 @@ export function getLetterPool(words) {
   for (let letter in letterDistribution) {
     letterPercentages[letter] = Math.max(
       1,
-      Math.round(100 * (letterDistribution[letter] / totalLetters))
+      Math.round(100 * (letterDistribution[letter] / totalLetters)),
     );
   }
 

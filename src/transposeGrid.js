@@ -4,7 +4,7 @@ export function transposeGrid(grid) {
   // so throw errors if that isn't the case
   if (grid.length != grid[0]?.length) {
     throw new Error(
-      `The number of columns and number of rows in the grid must be equal.`
+      `The number of columns and number of rows in the grid must be equal.`,
     );
   }
 

@@ -1,5 +1,5 @@
-import { isKnown } from "./isKnown.js";
-import { transposeGrid } from "./transposeGrid.js";
+import {isKnown} from "./isKnown.js";
+import {transposeGrid} from "./transposeGrid.js";
 
 function getSurroundingLetterIndexes({
   startingIndex,
@@ -22,7 +22,7 @@ function getSurroundingLetterIndexes({
         !alreadyFoundIndexes.some(
           (alreadyFoundIndex) =>
             alreadyFoundIndex[0] === surroundingIndexes[index][0] &&
-            alreadyFoundIndex[1] === surroundingIndexes[index][1]
+            alreadyFoundIndex[1] === surroundingIndexes[index][1],
         )
       ) {
         surroundingLetterIndexes.push(surroundingIndexes[index]);
@@ -77,7 +77,7 @@ function isSingleGroupingQ(grid) {
   return numLetters === connectedIndexes.length;
 }
 
-export function crosswordValidQ({ grid, trie, exceptedWords = [] }) {
+export function crosswordValidQ({grid, trie, exceptedWords = []}) {
   const isSingleGrouping = isSingleGroupingQ(grid);
   if (!isSingleGrouping) {
     return {
@@ -115,7 +115,7 @@ export function crosswordValidQ({ grid, trie, exceptedWords = [] }) {
           // Otherwise, check whether it is a word in the trie.
           let isWord = exceptedWords.includes(currentWord);
           if (!isWord) {
-            ({ isWord } = isKnown(currentWord, trie));
+            ({isWord} = isKnown(currentWord, trie));
           }
 
           if (!isWord) {
@@ -130,5 +130,5 @@ export function crosswordValidQ({ grid, trie, exceptedWords = [] }) {
       }
     }
   }
-  return { gameIsSolved: true, reason: "" };
+  return {gameIsSolved: true, reason: ""};
 }

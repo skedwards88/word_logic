@@ -1,4 +1,4 @@
-import { transposeGrid } from "./transposeGrid";
+import {transposeGrid} from "./transposeGrid";
 
 describe("transposeGrid", () => {
   test("it swaps the rows and columns in a grid", () => {
@@ -22,18 +22,18 @@ describe("transposeGrid", () => {
   test("it rejects grids that are wider than tall", () => {
     const grid = [["W", "I", "D", "E"]];
     expect(() => transposeGrid(grid)).toThrow(
-      "The number of columns and number of rows in the grid must be equal."
+      "The number of columns and number of rows in the grid must be equal.",
     );
   });
 
   test("it rejects grids that are taller than wide, including empty grids", () => {
     const grid = [["T"], ["A"], ["L"], ["L"]];
     expect(() => transposeGrid(grid)).toThrow(
-      "The number of columns and number of rows in the grid must be equal."
+      "The number of columns and number of rows in the grid must be equal.",
     );
 
     expect(() => transposeGrid([])).toThrow(
-      "The number of columns and number of rows in the grid must be equal."
+      "The number of columns and number of rows in the grid must be equal.",
     );
   });
 
@@ -44,7 +44,7 @@ describe("transposeGrid", () => {
       ["D", "", ""],
     ];
     expect(() => transposeGrid(grid)).toThrow(
-      "All of the rows in the grid must have the same length."
+      "All of the rows in the grid must have the same length.",
     );
   });
 });

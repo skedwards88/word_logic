@@ -1,6 +1,6 @@
 export function getTrie(commonWords, uncommonWords) {
-  console.log('building trie')
-  
+  console.log("building trie");
+
   let trie = {};
   for (let word of uncommonWords) {
     let current = trie;
