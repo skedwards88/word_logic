@@ -240,7 +240,6 @@ describe("pickRandomItemsFromArray", () => {
   test("returns an empty array if the input array is empty", () => {
     const inputArray = [];
     const randomElement = pickRandomItemsFromArray(inputArray, 3);
-    console.log(randomElement);
     expect(randomElement).toEqual([]);
   });
 });
