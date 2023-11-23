@@ -107,6 +107,12 @@ describe("pickRandomItemFromArray", () => {
     const uniqueItems = new Set(items);
     expect(uniqueItems.size).toEqual(1);
   });
+
+  test("returns undefined if the input array is empty", () => {
+    const inputArray = [];
+    const randomElement = pickRandomItemFromArray(inputArray);
+    expect(randomElement).toBe(undefined);
+  });
 });
 
 describe("pickRandomItemsFromArray", () => {
@@ -226,6 +232,13 @@ describe("pickRandomItemsFromArray", () => {
     const uniqueItems = new Set(items);
     expect(uniqueItems.size).toEqual(numberOfItems);
   });
+
+  test("returns an empty array if the input array is empty", () => {
+    const inputArray = [];
+    const randomElement = pickRandomItemsFromArray(inputArray, 3);
+    console.log(randomElement)
+    expect(randomElement).toEqual([]);
+  });
 });
 
 describe("pickRandomIndexFromArray", () => {
@@ -331,6 +344,13 @@ describe("pickRandomIndexFromArray", () => {
 
     const uniqueItems = new Set(items);
     expect(uniqueItems.size).toEqual(1);
+  });
+
+  test("if the input array is empty, returns 0", () => {
+    const inputArray = [];
+    const randomIndex = pickRandomIndexFromArray(inputArray);
+    expect(randomIndex).toEqual(0);
+    // expect(randomIndex).toBeLessThan(inputArray.length);
   });
 });
 
