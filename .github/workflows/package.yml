@@ -6,6 +6,12 @@ on:
     paths-ignore:
       - 'README.md'
       - 'TODO.md'
+      - "LICENSE"
+      - "jest.config.cjs"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - ".gitignore"
+      - ".eslintrc.cjs"
   workflow_dispatch:
 
 jobs:
