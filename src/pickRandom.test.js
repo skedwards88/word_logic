@@ -97,7 +97,7 @@ describe("pickRandomItemFromArray", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = []
+    let items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const item = pickRandomItemFromArray(inputArray, pseudoRandomGenerator);
@@ -222,10 +222,14 @@ describe("pickRandomItemsFromArray", () => {
     const numberOfIterations = 100;
     const numberOfItems = 3;
 
-    let items = []
+    let items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
-      const output = pickRandomItemsFromArray(inputArray, numberOfItems, pseudoRandomGenerator);
+      const output = pickRandomItemsFromArray(
+        inputArray,
+        numberOfItems,
+        pseudoRandomGenerator,
+      );
       items.push(...output);
     }
 
@@ -236,7 +240,7 @@ describe("pickRandomItemsFromArray", () => {
   test("returns an empty array if the input array is empty", () => {
     const inputArray = [];
     const randomElement = pickRandomItemsFromArray(inputArray, 3);
-    console.log(randomElement)
+    console.log(randomElement);
     expect(randomElement).toEqual([]);
   });
 });
@@ -335,7 +339,7 @@ describe("pickRandomIndexFromArray", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = []
+    let items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const index = pickRandomIndexFromArray(inputArray, pseudoRandomGenerator);
@@ -411,7 +415,7 @@ describe("pickRandomIntBetween", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = []
+    let items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const item = pickRandomIntBetween(min, max, pseudoRandomGenerator);

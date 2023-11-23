@@ -1,18 +1,24 @@
 function getRandom(pseudoRandomGenerator) {
   if (pseudoRandomGenerator) {
-    return pseudoRandomGenerator()
+    return pseudoRandomGenerator();
   } else {
-    return Math.random()
+    return Math.random();
   }
 }
 
 // return a random element from a given array
 export function pickRandomItemFromArray(inputArray, pseudoRandomGenerator) {
-  return inputArray[Math.floor(getRandom(pseudoRandomGenerator) * inputArray.length)];
+  return inputArray[
+    Math.floor(getRandom(pseudoRandomGenerator) * inputArray.length)
+  ];
 }
 
 // return n random elements from a given array
-export function pickRandomItemsFromArray(inputArray, numberOfItems, pseudoRandomGenerator) {
+export function pickRandomItemsFromArray(
+  inputArray,
+  numberOfItems,
+  pseudoRandomGenerator,
+) {
   let modifiedArray = [...inputArray];
   let items = [];
   for (
@@ -20,7 +26,10 @@ export function pickRandomItemsFromArray(inputArray, numberOfItems, pseudoRandom
     index < Math.min(numberOfItems, inputArray.length);
     index++
   ) {
-    const itemIndex = pickRandomIndexFromArray(modifiedArray, pseudoRandomGenerator);
+    const itemIndex = pickRandomIndexFromArray(
+      modifiedArray,
+      pseudoRandomGenerator,
+    );
     items = [...items, modifiedArray[itemIndex]];
     modifiedArray = [
       ...modifiedArray.slice(0, itemIndex),
