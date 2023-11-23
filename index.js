@@ -12,3 +12,9 @@ export {shuffleArray} from "./src/shuffleArray.js";
 export {sortLettersBy} from "./src/sortLetters.js";
 export {transposeGrid} from "./src/transposeGrid.js";
 export {getNLetters} from "./src/getNLetters.js";
+export {
+  pickRandomItemFromArray,
+  pickRandomIndexFromArray,
+  pickRandomItemsFromArray,
+  pickRandomIntBetween,
+} from "./src/pickRandom.js";
