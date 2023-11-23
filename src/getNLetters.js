@@ -1,4 +1,4 @@
-import {shuffleArray} from "./shuffleArray";
+import {shuffleArray} from "./shuffleArray.js";
 
 export function getNLetters(numLetters, letterPool, pseudoRandomGenerator) {
   // Given a distribution of letters,
