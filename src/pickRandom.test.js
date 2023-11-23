@@ -4,6 +4,7 @@ import {
   pickRandomItemsFromArray,
   pickRandomIntBetween,
 } from "./pickRandom";
+import seedrandom from "seedrandom";
 
 describe("pickRandomItemFromArray", () => {
   test("returns an element that was in the input array", () => {
@@ -58,6 +59,53 @@ describe("pickRandomItemFromArray", () => {
       const actualDistribution = counts[key] / numberOfIterations;
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
+  });
+
+  test("if a seeded pseudorandom generator is provided, the output is always the same", () => {
+    const inputArray = [
+      "act",
+      "bat",
+      "cat",
+      "dog",
+      "fish",
+      "monkey",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+    ];
+    const seed = "test";
+    const numberOfIterations = 100;
+
+    let items = []
+    for (let i = 0; i < numberOfIterations; i++) {
+      const pseudoRandomGenerator = seedrandom(seed);
+      const item = pickRandomItemFromArray(inputArray, pseudoRandomGenerator);
+      items.push(item);
+    }
+
+    const uniqueItems = new Set(items);
+    expect(uniqueItems.size).toEqual(1);
   });
 });
 
@@ -130,6 +178,54 @@ describe("pickRandomItemsFromArray", () => {
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
   });
+
+  test("if a seeded pseudorandom generator is provided, the output is always the same", () => {
+    const inputArray = [
+      "act",
+      "bat",
+      "cat",
+      "dog",
+      "fish",
+      "monkey",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+    ];
+    const seed = "test";
+    const numberOfIterations = 100;
+    const numberOfItems = 3;
+
+    let items = []
+    for (let i = 0; i < numberOfIterations; i++) {
+      const pseudoRandomGenerator = seedrandom(seed);
+      const output = pickRandomItemsFromArray(inputArray, numberOfItems, pseudoRandomGenerator);
+      items.push(...output);
+    }
+
+    const uniqueItems = new Set(items);
+    expect(uniqueItems.size).toEqual(numberOfItems);
+  });
 });
 
 describe("pickRandomIndexFromArray", () => {
@@ -189,6 +285,53 @@ describe("pickRandomIndexFromArray", () => {
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
   });
+
+  test("if a seeded pseudorandom generator is provided, the output is always the same", () => {
+    const inputArray = [
+      "act",
+      "bat",
+      "cat",
+      "dog",
+      "fish",
+      "monkey",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+    ];
+    const seed = "test";
+    const numberOfIterations = 100;
+
+    let items = []
+    for (let i = 0; i < numberOfIterations; i++) {
+      const pseudoRandomGenerator = seedrandom(seed);
+      const index = pickRandomIndexFromArray(inputArray, pseudoRandomGenerator);
+      items.push(index);
+    }
+
+    const uniqueItems = new Set(items);
+    expect(uniqueItems.size).toEqual(1);
+  });
 });
 
 describe("pickRandomIntBetween", () => {
@@ -240,6 +383,23 @@ describe("pickRandomIntBetween", () => {
       // toBeCloseTo expected precision of 1 (second arg) means that expected difference <0.05
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
+  });
+
+  test("if a seeded pseudorandom generator is provided, the output is always the same", () => {
+    const min = 9;
+    const max = 9;
+    const seed = "test";
+    const numberOfIterations = 100;
+
+    let items = []
+    for (let i = 0; i < numberOfIterations; i++) {
+      const pseudoRandomGenerator = seedrandom(seed);
+      const item = pickRandomIntBetween(min, max, pseudoRandomGenerator);
+      items.push(item);
+    }
+
+    const uniqueItems = new Set(items);
+    expect(uniqueItems.size).toEqual(1);
   });
 
   test("Does not care if the order of the args is min,max or max,min", () => {
