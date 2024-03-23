@@ -1,6 +1,6 @@
 import cloneDeep from "lodash.clonedeep";
-import {getMaxShifts} from "./getMaxShifts";
-import {transposeGrid} from "./transposeGrid";
+import {getMaxShifts} from "./getMaxShifts.js";
+import {transposeGrid} from "./transposeGrid.js";
 
 export function centerGrid(grid) {
   let shiftedGrid = cloneDeep(grid);
