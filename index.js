@@ -18,3 +18,5 @@ export {
   pickRandomItemsFromArray,
   pickRandomIntBetween,
 } from "./src/pickRandom.js";
+export {getMaxShifts} from "./src/getMaxShifts.js";
+export {centerGrid} from "./src/centerGrid.js";

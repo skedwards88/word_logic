@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/skedwards88/word_logic#readme",
   "dependencies": {
+    "lodash.clonedeep": "^4.5.0",
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {
