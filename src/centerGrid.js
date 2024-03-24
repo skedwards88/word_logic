@@ -2,15 +2,17 @@ import cloneDeep from "lodash.clonedeep";
 import {getMaxShifts} from "./getMaxShifts.js";
 import {transposeGrid} from "./transposeGrid.js";
 
-export function centerGrid(grid) {
+export function centerGrid(grid, emptyValue) {
   let shiftedGrid = cloneDeep(grid);
 
-  const emptyRow = Array(grid.length).fill("");
+  const emptyRow = Array(grid.length).fill(emptyValue);
 
   // determine the number of current empty edge rows
   // and the number of empty edge rows when centered
-  const {maxShiftLeft, maxShiftRight, maxShiftUp, maxShiftDown} =
-    getMaxShifts(grid);
+  const {maxShiftLeft, maxShiftRight, maxShiftUp, maxShiftDown} = getMaxShifts(
+    grid,
+    emptyValue,
+  );
   const averageShiftLeftRight = (maxShiftLeft + maxShiftRight) / 2;
   const newMaxShiftLeft = Math.floor(averageShiftLeftRight);
   const newMaxShiftRight = Math.ceil(averageShiftLeftRight);

@@ -1,12 +1,12 @@
 import {transposeGrid} from "./transposeGrid.js";
 
 // get the number of empty rows/columns on each side of a 2D grid
-export function getMaxShifts(grid) {
+export function getMaxShifts(grid, emptyValue) {
   const transposedGrid = transposeGrid(grid);
 
   let maxShiftUp = 0;
   for (let index = 0; index < grid.length; index++) {
-    if (grid[index].every((i) => i === "")) {
+    if (grid[index].every((i) => i == emptyValue)) {
       maxShiftUp++;
     } else {
       break;
@@ -15,7 +15,7 @@ export function getMaxShifts(grid) {
 
   let maxShiftDown = 0;
   for (let index = grid.length - 1; index >= 0; index--) {
-    if (grid[index].every((i) => i === "")) {
+    if (grid[index].every((i) => i == emptyValue)) {
       maxShiftDown++;
     } else {
       break;
@@ -24,7 +24,7 @@ export function getMaxShifts(grid) {
 
   let maxShiftLeft = 0;
   for (let index = 0; index < transposedGrid.length; index++) {
-    if (transposedGrid[index].every((i) => i === "")) {
+    if (transposedGrid[index].every((i) => i == emptyValue)) {
       maxShiftLeft++;
     } else {
       break;
@@ -33,7 +33,7 @@ export function getMaxShifts(grid) {
 
   let maxShiftRight = 0;
   for (let index = transposedGrid.length - 1; index >= 0; index--) {
-    if (transposedGrid[index].every((i) => i === "")) {
+    if (transposedGrid[index].every((i) => i == emptyValue)) {
       maxShiftRight++;
     } else {
       break;
