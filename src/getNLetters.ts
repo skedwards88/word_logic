@@ -1,6 +1,6 @@
 import {shuffleArray} from "./shuffleArray.js";
 import type seedrandom from "seedrandom";
-import type { Letter } from "./Types.js";
+import type {Letter} from "./Types.js";
 
 export function getNLetters(
   numLetters: number,

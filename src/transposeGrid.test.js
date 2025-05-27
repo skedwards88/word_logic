@@ -67,24 +67,14 @@ describe("transposeGrid", () => {
   });
 
   test("it rejects grids with some empty rows", () => {
-    const grid = [
-      ["A", "", "C"],
-      [],
-      ["D", "", ""],
-    ];
+    const grid = [["A", "", "C"], [], ["D", "", ""]];
     expect(() => transposeGrid(grid)).toThrow(
       "All of the rows in the grid must have the same length.",
     );
   });
 
   test("it rejects grids with all empty rows", () => {
-    const grid = [
-      [],
-      [],
-      [],
-    ];
-    expect(() => transposeGrid(grid)).toThrow(
-      "Rows must not be empty.",
-    );
+    const grid = [[], [], []];
+    expect(() => transposeGrid(grid)).toThrow("Rows must not be empty.");
   });
 });

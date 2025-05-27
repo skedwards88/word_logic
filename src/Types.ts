@@ -26,4 +26,4 @@ export type Letter =
   | "Y"
   | "Z";
 
-  export type Primitive = string | number | boolean | null | undefined;
+export type Primitive = string | number | boolean | null | undefined;

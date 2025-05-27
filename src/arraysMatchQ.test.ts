@@ -1,5 +1,5 @@
 import {arraysMatchQ} from "./arraysMatchQ";
-import type { Primitive } from "./Types";
+import type {Primitive} from "./Types";
 
 test("True when arrays contain same items in same order", () => {
   const arrayA = ["CAT", "DOG", "ELEPHANT", 2];
@@ -34,7 +34,6 @@ test("False when array is subset of other", () => {
 });
 
 test("Does not consider deeper equalities", () => {
-
   const arrayA = ["CAT", "DOG", "ELEPHANT", 2, {item: "skates"}];
   const arrayB = ["CAT", "DOG", "ELEPHANT", 2, {item: "skates"}];
 

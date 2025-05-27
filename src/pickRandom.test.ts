@@ -48,7 +48,10 @@ describe("pickRandomItemFromArray", () => {
     ];
     const numberOfIterations = 10000;
     const expectedDistribution = 1 / inputArray.length;
-    const counts: Record<string|number, number> = inputArray.reduce((dict, key) => ({...dict, [key]: 0}), {});
+    const counts: Record<string | number, number> = inputArray.reduce(
+      (dict, key) => ({...dict, [key]: 0}),
+      {},
+    );
 
     for (let i = 0; i < numberOfIterations; i++) {
       const item = pickRandomItemFromArray(inputArray);
@@ -169,7 +172,10 @@ describe("pickRandomItemsFromArray", () => {
     const numberOfItems = 3;
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / inputArray.length;
-    const counts: Record<string|number, number> = inputArray.reduce((dict, key) => ({...dict, [key]: 0}), {});
+    const counts: Record<string | number, number> = inputArray.reduce(
+      (dict, key) => ({...dict, [key]: 0}),
+      {},
+    );
 
     for (let i = 0; i < numberOfIterations; i++) {
       const items = pickRandomItemsFromArray(inputArray, numberOfItems);
@@ -389,7 +395,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    const counts: Record<number, number>  = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }
@@ -430,7 +436,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    const countsMinMax: Record<number, number>  = {};
+    const countsMinMax: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       countsMinMax[index] = 0;
     }
@@ -471,7 +477,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    const counts: Record<number, number>  = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }
@@ -495,7 +501,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    const counts: Record<number, number>  = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }

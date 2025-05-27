@@ -8,7 +8,7 @@ export function transposeGrid<T>(grid: T[][]): T[][] {
     throw new Error(`All of the rows in the grid must have the same length.`);
   }
 
-  if (numColumnsPerRow.some(i => i === 0)) {
+  if (numColumnsPerRow.some((i) => i === 0)) {
     throw new Error(`Rows must not be empty.`);
   }
 
