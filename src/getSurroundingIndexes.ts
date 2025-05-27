@@ -1,7 +1,15 @@
-export function getSurroundingIndexes({index, numColumns, numRows}) {
+export function getSurroundingIndexes({
+  index,
+  numColumns,
+  numRows,
+}: {
+  index: number;
+  numColumns: number;
+  numRows: number;
+}): number[] {
   const column = index % numColumns;
   const row = Math.floor(index / numColumns);
-  let surroundingIndexes = [];
+  const surroundingIndexes = [];
   for (let currentRow = row - 1; currentRow <= row + 1; currentRow++) {
     for (
       let currentColumn = column - 1;

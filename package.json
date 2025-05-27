@@ -1,11 +1,16 @@
 {
   "name": "@skedwards88/word_logic",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "A collection of word-related functions.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "eslint": "npx eslint --ignore-path .gitignore . --fix",
+    "tslint": "npx tsc --noEmit",
+    "prettier": "npx prettier --write .",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,9 +30,15 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.27.1",
+    "@types/jest": "^29.5.14",
+    "@types/lodash.clonedeep": "^4.5.9",
+    "@types/seedrandom": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
     "babel-jest": "^29.3.1",
     "eslint": "^8.54.0",
     "jest": "^29.3.1",
-    "prettier": "^3.1.0"
+    "prettier": "^3.1.0",
+    "typescript": "^5.8.3"
   }
 }

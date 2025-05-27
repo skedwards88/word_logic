@@ -14,7 +14,7 @@ const uncommonWords = [
 const words = [...commonWords, ...uncommonWords];
 
 test("All letters represented in pool, except for Q (is Qu)", () => {
-  const pool = getLetterPool(words);
+  const pool = getLetterPool(words) as string[];
   const letters = commonWords.concat(uncommonWords).join("").split("");
 
   const missingLetters = letters.filter((letter) => !pool.includes(letter));

@@ -3,7 +3,7 @@ import seedrandom from "seedrandom";
 
 test("the shuffled array contains the same items", () => {
   const original = [1, 2, 3, 4, 5];
-  const shuffled = shuffleArray(original);
+  const shuffled = shuffleArray<number>(original);
 
   expect(original.sort()).toEqual(shuffled.sort());
 });

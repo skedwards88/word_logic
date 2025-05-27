@@ -1,4 +1,6 @@
-export function arraysMatchQ(arrayA, arrayB) {
+export function arraysMatchQ<
+  T extends string | number | boolean | null | undefined,
+>(arrayA: T[], arrayB: T[]): boolean {
   if (arrayA.length !== arrayB.length) {
     return false;
   }

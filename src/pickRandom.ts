@@ -1,4 +1,6 @@
-function getRandom(pseudoRandomGenerator) {
+import type seedrandom from "seedrandom";
+
+function getRandom(pseudoRandomGenerator?: seedrandom.PRNG): number {
   if (pseudoRandomGenerator) {
     return pseudoRandomGenerator();
   } else {
@@ -7,20 +9,23 @@ function getRandom(pseudoRandomGenerator) {
 }
 
 // return a random element from a given array
-export function pickRandomItemFromArray(inputArray, pseudoRandomGenerator) {
+export function pickRandomItemFromArray<T>(
+  inputArray: T[],
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): T {
   return inputArray[
     Math.floor(getRandom(pseudoRandomGenerator) * inputArray.length)
   ];
 }
 
 // return n random elements from a given array
-export function pickRandomItemsFromArray(
-  inputArray,
-  numberOfItems,
-  pseudoRandomGenerator,
-) {
+export function pickRandomItemsFromArray<T>(
+  inputArray: T[],
+  numberOfItems: number,
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): T[] {
   let modifiedArray = [...inputArray];
-  let items = [];
+  let items: T[] = [];
   for (
     let index = 0;
     index < Math.min(numberOfItems, inputArray.length);
@@ -40,12 +45,19 @@ export function pickRandomItemsFromArray(
 }
 
 // return a random index from a given array
-export function pickRandomIndexFromArray(inputArray, pseudoRandomGenerator) {
+export function pickRandomIndexFromArray<T>(
+  inputArray: T[],
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): number {
   return Math.floor(getRandom(pseudoRandomGenerator) * inputArray.length);
 }
 
 // return a random int within a range, inclusive
-export function pickRandomIntBetween(int1, int2, pseudoRandomGenerator) {
+export function pickRandomIntBetween(
+  int1: number,
+  int2: number,
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): number {
   const min = Math.min(int1, int2);
   const max = Math.max(int1, int2);
 
