@@ -1,12 +1,12 @@
 import {shuffleArray} from "./shuffleArray.js";
 import type seedrandom from "seedrandom";
-import type {Letter} from "./Types.js";
+import type {LLetterQu from "./Types.js";
 
 export function getNLetters(
   numLetters: number,
-  letterPool: Letter[],
+  letterPool: LetterQu[],
   pseudoRandomGenerator?: seedrandom.PRNG,
-): Letter[] {
+): LetterQu[] {
   // Given a distribution of letters,
   // choose n letters without substitution
 

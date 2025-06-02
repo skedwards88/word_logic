@@ -1,10 +1,13 @@
-export function getTrie(commonWords, uncommonWords) {
+import type { Letter, TrieNode } from "./Types";
+
+export function getTrie(commonWords: Iterable<Letter>[], uncommonWords: Iterable<Letter>[]): TrieNode {
   console.log("building trie");
 
-  let trie = {};
-  for (let word of uncommonWords) {
+  const trie: TrieNode = {};
+  for (const word of uncommonWords) {
     let current = trie;
-    for (let letter of word) {
+    for (const letter of word) {
+
       if (!current[letter]) {
         current[letter] = {};
       }
@@ -13,9 +16,9 @@ export function getTrie(commonWords, uncommonWords) {
     current["endOfWord"] = true;
   }
 
-  for (let word of commonWords) {
+  for (const word of commonWords) {
     let current = trie;
-    for (let letter of word) {
+    for (const letter of word) {
       if (!current[letter]) {
         current[letter] = {};
       }

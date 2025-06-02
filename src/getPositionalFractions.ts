@@ -1,8 +1,15 @@
-export function getPositionalFractions({
-  poolLetters,
+export function getPositionalFractions<T>({
+  poolLetters, // todo change this to just input number of letters since only care about length
   maxLettersAcross,
   stagger = false,
-}) {
+}: {
+  poolLetters: T[],
+  maxLettersAcross: number,
+  stagger?: boolean,
+}): {
+      x: number,
+      y: number,
+    }[] {
   // Span across this percentage of the screen
   const xSpan = 80;
   const ySpan = 80;
@@ -41,10 +48,10 @@ export function getPositionalFractions({
       (100 - ySpan) / 2 - // Adjust for not spanning across whole height
       letterDiameter; // Adjust for height of the letter
 
-    const fractionalPosition = new Object({
+    const fractionalPosition = {
       x: xFractionalPosition,
       y: yFractionalPosition,
-    });
+    };
     fractionalPositions.push(fractionalPosition);
   }
   return fractionalPositions;

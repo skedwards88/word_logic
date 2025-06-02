@@ -1,6 +1,6 @@
-import type {Letter} from "./Types";
+import type {LetterQu} from "./Types";
 
-export function getLetterPool(words: string[]): Letter[] {
+export function getLetterPool(words: string[]): LetterQu[] {
   const letterDistribution: Record<string, number> = {};
   let totalLetters = 0;
 
@@ -40,7 +40,7 @@ export function getLetterPool(words: string[]): Letter[] {
   }
 
   // Based on the percentages, build out a representative list of letters
-  let representativeLetters: Letter[] = [];
+  let representativeLetters: LetterQu[] = [];
   for (const letter in letterPercentages) {
     const letters = Array(letterPercentages[letter]).fill(letter);
     representativeLetters = representativeLetters.concat(letters);
