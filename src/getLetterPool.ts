@@ -1,9 +1,11 @@
-export function getLetterPool(words) {
-  let letterDistribution = {};
+import type {LetterQu} from "./Types";
+
+export function getLetterPool(words: string[]): LetterQu[] {
+  const letterDistribution: Record<string, number> = {};
   let totalLetters = 0;
 
   // Get the letter counts
-  for (let word of words) {
+  for (const word of words) {
     const letters = word.split("");
     letters.forEach((letter) => {
       letterDistribution[letter] = letterDistribution[letter]
@@ -14,8 +16,8 @@ export function getLetterPool(words) {
   }
 
   // adjust for Qu
-  const numQs = letterDistribution["Q"];
-  const numUs = letterDistribution["U"];
+  const numQs = letterDistribution["Q"] ?? 0;
+  const numUs = letterDistribution["U"] ?? 0;
   letterDistribution["U"] = numUs - numQs;
   letterDistribution["Qu"] = numQs;
   delete letterDistribution["Q"];
@@ -25,21 +27,21 @@ export function getLetterPool(words) {
   //   There are ~168676 "s" total
   //   About 74442 words ends in "s"
   //   Remove ~40% of that (18610)
-  const numSs = letterDistribution["S"];
+  const numSs = letterDistribution["S"] ?? 0;
   letterDistribution["S"] = numSs - numSs * 0.11;
 
   // Convert the letter distribution to a rounded percentage, rounding up to 1
-  const letterPercentages = {};
-  for (let letter in letterDistribution) {
+  const letterPercentages: Record<string, number> = {};
+  for (const [letter, count] of Object.entries(letterDistribution)) {
     letterPercentages[letter] = Math.max(
       1,
-      Math.round(100 * (letterDistribution[letter] / totalLetters)),
+      Math.round(100 * (count / totalLetters)),
     );
   }
 
   // Based on the percentages, build out a representative list of letters
-  let representativeLetters = [];
-  for (let letter in letterPercentages) {
+  let representativeLetters: LetterQu[] = [];
+  for (const letter in letterPercentages) {
     const letters = Array(letterPercentages[letter]).fill(letter);
     representativeLetters = representativeLetters.concat(letters);
   }

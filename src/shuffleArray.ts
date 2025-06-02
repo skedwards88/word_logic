@@ -1,5 +1,10 @@
-export function shuffleArray(array, pseudoRandomGenerator) {
-  let shuffledArray = array.slice();
+import type seedrandom from "seedrandom";
+
+export function shuffleArray<T>(
+  array: T[],
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): T[] {
+  const shuffledArray = array.slice();
 
   // Swap each value in an array, starting at the end of the array, with a position equal or earlier in the array.
   for (let index = shuffledArray.length - 1; index > 0; index--) {
@@ -21,7 +26,7 @@ export function shuffleArray(array, pseudoRandomGenerator) {
     // Get the original value at index,
     // set the value at the index to be the value at the swap index,
     // then set the value at the swap index to be the original value at the index
-    let swapValue = shuffledArray[index];
+    const swapValue = shuffledArray[index];
     shuffledArray[index] = shuffledArray[swapIndex];
     shuffledArray[swapIndex] = swapValue;
   }

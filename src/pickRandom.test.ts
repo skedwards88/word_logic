@@ -48,7 +48,10 @@ describe("pickRandomItemFromArray", () => {
     ];
     const numberOfIterations = 10000;
     const expectedDistribution = 1 / inputArray.length;
-    let counts = inputArray.reduce((dict, key) => ({...dict, [key]: 0}), {});
+    const counts: Record<string | number, number> = inputArray.reduce(
+      (dict, key) => ({...dict, [key]: 0}),
+      {},
+    );
 
     for (let i = 0; i < numberOfIterations; i++) {
       const item = pickRandomItemFromArray(inputArray);
@@ -97,7 +100,7 @@ describe("pickRandomItemFromArray", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = [];
+    const items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const item = pickRandomItemFromArray(inputArray, pseudoRandomGenerator);
@@ -109,7 +112,7 @@ describe("pickRandomItemFromArray", () => {
   });
 
   test("returns undefined if the input array is empty", () => {
-    const inputArray = [];
+    const inputArray: unknown[] = [];
     const randomElement = pickRandomItemFromArray(inputArray);
     expect(randomElement).toBe(undefined);
   });
@@ -169,7 +172,10 @@ describe("pickRandomItemsFromArray", () => {
     const numberOfItems = 3;
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / inputArray.length;
-    const counts = inputArray.reduce((dict, key) => ({...dict, [key]: 0}), {});
+    const counts: Record<string | number, number> = inputArray.reduce(
+      (dict, key) => ({...dict, [key]: 0}),
+      {},
+    );
 
     for (let i = 0; i < numberOfIterations; i++) {
       const items = pickRandomItemsFromArray(inputArray, numberOfItems);
@@ -222,7 +228,7 @@ describe("pickRandomItemsFromArray", () => {
     const numberOfIterations = 100;
     const numberOfItems = 3;
 
-    let items = [];
+    const items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const output = pickRandomItemsFromArray(
@@ -238,7 +244,7 @@ describe("pickRandomItemsFromArray", () => {
   });
 
   test("returns an empty array if the input array is empty", () => {
-    const inputArray = [];
+    const inputArray: unknown[] = [];
     const randomElement = pickRandomItemsFromArray(inputArray, 3);
     expect(randomElement).toEqual([]);
   });
@@ -287,8 +293,8 @@ describe("pickRandomIndexFromArray", () => {
     ];
     const numberOfIterations = 10000;
     const expectedDistribution = 1 / inputArray.length;
-    let counts = inputArray.reduce(
-      (dict, key, index) => ({...dict, [index]: 0}),
+    const counts: Record<number, number> = inputArray.reduce(
+      (dict, _, index) => ({...dict, [index]: 0}),
       {},
     );
 
@@ -338,7 +344,7 @@ describe("pickRandomIndexFromArray", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = [];
+    const items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const index = pickRandomIndexFromArray(inputArray, pseudoRandomGenerator);
@@ -350,10 +356,9 @@ describe("pickRandomIndexFromArray", () => {
   });
 
   test("if the input array is empty, returns 0", () => {
-    const inputArray = [];
+    const inputArray: unknown[] = [];
     const randomIndex = pickRandomIndexFromArray(inputArray);
     expect(randomIndex).toEqual(0);
-    // expect(randomIndex).toBeLessThan(inputArray.length);
   });
 });
 
@@ -366,7 +371,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    let counts = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }
@@ -390,7 +395,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    let counts = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }
@@ -414,7 +419,7 @@ describe("pickRandomIntBetween", () => {
     const seed = "test";
     const numberOfIterations = 100;
 
-    let items = [];
+    const items = [];
     for (let i = 0; i < numberOfIterations; i++) {
       const pseudoRandomGenerator = seedrandom(seed);
       const item = pickRandomIntBetween(min, max, pseudoRandomGenerator);
@@ -431,36 +436,36 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    let counts = {};
+    const countsMinMax: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
-      counts[index] = 0;
+      countsMinMax[index] = 0;
     }
     for (let i = 0; i < numberOfIterations; i++) {
       const randomInt = pickRandomIntBetween(min, max);
       expect(randomInt).toBeGreaterThanOrEqual(min);
       expect(randomInt).toBeLessThanOrEqual(max);
-      counts[randomInt] = counts[randomInt] + 1;
+      countsMinMax[randomInt] = countsMinMax[randomInt] + 1;
     }
 
-    for (const key in counts) {
-      const actualDistribution = counts[key] / numberOfIterations;
+    for (const key in countsMinMax) {
+      const actualDistribution = countsMinMax[key] / numberOfIterations;
       // toBeCloseTo expected precision of 1 (second arg) means that expected difference <0.05
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
 
-    counts = {};
+    const countsMaxMin: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
-      counts[index] = 0;
+      countsMaxMin[index] = 0;
     }
     for (let i = 0; i < numberOfIterations; i++) {
       const randomInt = pickRandomIntBetween(max, min);
       expect(randomInt).toBeGreaterThanOrEqual(min);
       expect(randomInt).toBeLessThanOrEqual(max);
-      counts[randomInt] = counts[randomInt] + 1;
+      countsMaxMin[randomInt] = countsMaxMin[randomInt] + 1;
     }
 
-    for (const key in counts) {
-      const actualDistribution = counts[key] / numberOfIterations;
+    for (const key in countsMaxMin) {
+      const actualDistribution = countsMaxMin[key] / numberOfIterations;
       // toBeCloseTo expected precision of 1 (second arg) means that expected difference <0.05
       expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
     }
@@ -472,7 +477,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    let counts = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }
@@ -496,7 +501,7 @@ describe("pickRandomIntBetween", () => {
     const numberOfIterations = 1000;
     const expectedDistribution = 1 / (1 + max - min);
 
-    let counts = {};
+    const counts: Record<number, number> = {};
     for (let index = min; index <= max; index++) {
       counts[index] = 0;
     }

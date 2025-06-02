@@ -1,10 +1,15 @@
 import {isKnown} from "./isKnown.js";
 import {transposeGrid} from "./transposeGrid.js";
+import { Letter, TrieNode } from "./Types.js";
 
-function getSurroundingLetterIndexes({
+function getSurroundingLetterIndexes<T>({
   startingIndex,
   grid,
   alreadyFoundIndexes,
+}: {
+  startingIndex: [number, number],
+  grid: T[][],
+  alreadyFoundIndexes: [number, number][],
 }) {
   const surroundingIndexes = [
     [startingIndex[0] - 1, startingIndex[1]],
@@ -13,7 +18,7 @@ function getSurroundingLetterIndexes({
     [startingIndex[0], startingIndex[1] + 1],
   ];
 
-  let surroundingLetterIndexes = [];
+  const surroundingLetterIndexes = [];
   for (let index = 0; index < surroundingIndexes.length; index++) {
     // If there is a letter at the surrounding index
     if (grid?.[surroundingIndexes[index][0]]?.[surroundingIndexes[index][1]]) {
@@ -77,7 +82,7 @@ function isSingleGroupingQ(grid) {
   return numLetters === connectedIndexes.length;
 }
 
-export function crosswordValidQ({grid, trie, exceptedWords = []}) {
+export function crosswordValidQ({grid, trie, exceptedWords = []}: {grid: Letter[][], trie: TrieNode, exceptedWords?: string[]}): {gameIsSolved: boolean, reason: string} {
   const isSingleGrouping = isSingleGroupingQ(grid);
   if (!isSingleGrouping) {
     return {
@@ -89,13 +94,14 @@ export function crosswordValidQ({grid, trie, exceptedWords = []}) {
   const transposedGrid = transposeGrid(grid);
   const jointGrid = [...grid, ...transposedGrid];
   for (let rowIndex = 0; rowIndex < jointGrid.length; rowIndex++) {
-    let currentWord = "";
+    let currentWord = "" as Iterable<Letter>;
+    currentWord = "R";
     for (
       let characterIndex = 0;
       characterIndex < jointGrid[rowIndex].length;
       characterIndex++
     ) {
-      let character = jointGrid[rowIndex][characterIndex];
+      const character = jointGrid[rowIndex][characterIndex];
       // If a letter, append to current word
       if (character.match("^[A-Z]$")) {
         currentWord += character;

@@ -2,7 +2,7 @@ import cloneDeep from "lodash.clonedeep";
 import {getMaxShifts} from "./getMaxShifts.js";
 import {transposeGrid} from "./transposeGrid.js";
 
-export function centerGrid(grid, emptyValue) {
+export function centerGrid<T>(grid: T[][], emptyValue: T): T[][] {
   let shiftedGrid = cloneDeep(grid);
 
   const emptyRow = Array(grid.length).fill(emptyValue);

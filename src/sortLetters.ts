@@ -1,12 +1,15 @@
 import {shuffleArray} from "./shuffleArray.js";
+import type {Letter, SortMethod} from "./Types.js";
 
-function sortVowels(letters) {
-  let vowels = [];
-  let consonants = [];
+function sortVowels(letters: Letter[]): Letter[] {
+  const vowels: Letter[] = [];
+  const consonants: Letter[] = [];
   for (let index = 0; index < letters.length; index++) {
-    ["A", "E", "I", "O", "U", "Y"].includes(letters[index])
-      ? vowels.push(letters[index])
-      : consonants.push(letters[index]);
+    if (["A", "E", "I", "O", "U", "Y"].includes(letters[index])) {
+      vowels.push(letters[index]);
+    } else {
+      consonants.push(letters[index]);
+    }
   }
   vowels.sort();
   consonants.sort();
@@ -19,7 +22,7 @@ export const sortMethods = {
   None: "None",
 };
 
-export function sortLettersBy(letters, sortBy) {
+export function sortLettersBy(letters: Letter[], sortBy: SortMethod): Letter[] {
   let lettersCopy = [...letters];
   if (sortBy === sortMethods.Alphabetical) {
     lettersCopy = lettersCopy.sort();
