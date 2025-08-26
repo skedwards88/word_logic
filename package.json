@@ -1,6 +1,6 @@
 {
   "name": "@skedwards88/word_logic",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A collection of word-related functions.",
   "main": "index.js",
   "type": "module",
