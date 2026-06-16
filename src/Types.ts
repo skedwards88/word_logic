@@ -1,4 +1,4 @@
-import type { sortMethods } from "./sortLetters";
+import type {sortMethods} from "./sortLetters";
 
 export type LetterQu =
   | "A"
@@ -28,7 +28,7 @@ export type LetterQu =
   | "Y"
   | "Z";
 
-  export type Letter =
+export type Letter =
   | "A"
   | "B"
   | "C"
@@ -65,4 +65,4 @@ export type TrieNode = {
   easyWord?: true;
 };
 
-export type SortMethod = typeof sortMethods[keyof typeof sortMethods];
+export type SortMethod = (typeof sortMethods)[keyof typeof sortMethods];

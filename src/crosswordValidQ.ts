@@ -1,15 +1,15 @@
 import {isKnown} from "./isKnown.js";
 import {transposeGrid} from "./transposeGrid.js";
-import { Letter, TrieNode } from "./Types.js";
+import type {Letter, TrieNode} from "./Types.js";
 
 function getSurroundingLetterIndexes<T>({
   startingIndex,
   grid,
   alreadyFoundIndexes,
 }: {
-  startingIndex: [number, number],
-  grid: T[][],
-  alreadyFoundIndexes: [number, number][],
+  startingIndex: [number, number];
+  grid: T[][];
+  alreadyFoundIndexes: [number, number][];
 }) {
   const surroundingIndexes = [
     [startingIndex[0] - 1, startingIndex[1]],
@@ -66,7 +66,7 @@ function isSingleGroupingQ(grid) {
   let count = 0;
   while (connectionsToCheckForConnections.length && count < 100) {
     count++;
-    let surroundingIndex = connectionsToCheckForConnections.pop();
+    const surroundingIndex = connectionsToCheckForConnections.pop();
     const newSurroundingIndexes = getSurroundingLetterIndexes({
       startingIndex: surroundingIndex,
       grid: grid,
@@ -82,7 +82,15 @@ function isSingleGroupingQ(grid) {
   return numLetters === connectedIndexes.length;
 }
 
-export function crosswordValidQ({grid, trie, exceptedWords = []}: {grid: Letter[][], trie: TrieNode, exceptedWords?: string[]}): {gameIsSolved: boolean, reason: string} {
+export function crosswordValidQ({
+  grid,
+  trie,
+  exceptedWords = [],
+}: {
+  grid: Letter[][];
+  trie: TrieNode;
+  exceptedWords?: string[];
+}): {gameIsSolved: boolean; reason: string} {
   const isSingleGrouping = isSingleGroupingQ(grid);
   if (!isSingleGrouping) {
     return {

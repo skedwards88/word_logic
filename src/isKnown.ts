@@ -1,9 +1,12 @@
-import type { Letter, TrieNode } from "./Types";
+import type {Letter, TrieNode} from "./Types";
 
-export function isKnown(word: Iterable<Letter>, trie: TrieNode): {
-  isPartial: boolean,
-  isWord: boolean,
-  isEasy: boolean
+export function isKnown(
+  word: Iterable<Letter>,
+  trie: TrieNode,
+): {
+  isPartial: boolean;
+  isWord: boolean;
+  isEasy: boolean;
 } {
   let current = trie;
   for (const letter of word) {

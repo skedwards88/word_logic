@@ -3,13 +3,13 @@ export function getPositionalFractions<T>({
   maxLettersAcross,
   stagger = false,
 }: {
-  poolLetters: T[],
-  maxLettersAcross: number,
-  stagger?: boolean,
+  poolLetters: T[];
+  maxLettersAcross: number;
+  stagger?: boolean;
 }): {
-      x: number,
-      y: number,
-    }[] {
+  x: number;
+  y: number;
+}[] {
   // Span across this percentage of the screen
   const xSpan = 80;
   const ySpan = 80;
