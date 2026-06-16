@@ -20,3 +20,4 @@ export {
 } from "./src/pickRandom.js";
 export {getMaxShifts} from "./src/getMaxShifts.js";
 export {centerGrid} from "./src/centerGrid.js";
+export {arrayToGrid} from "./src/arrayToGrid.js";

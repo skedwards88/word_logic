@@ -1,6 +1,6 @@
 {
   "name": "@skedwards88/word_logic",
-  "version": "5.0.0",
+  "version": "4.0.2",
   "description": "A collection of word-related functions.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
