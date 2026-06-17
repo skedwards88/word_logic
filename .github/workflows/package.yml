@@ -12,6 +12,7 @@ on:
       - ".prettierignore"
       - ".gitignore"
       - ".eslintrc.cjs"
+      - "tsconfig.json"
   workflow_dispatch:
 
 jobs:
@@ -36,7 +37,7 @@ jobs:
           git push origin main
       - run: npm ci
       - run: npm test
-      - run: npm build
+      - run: npm run build
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
