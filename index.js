@@ -1,4 +1,4 @@
-export {arraysMatchQ} from "./src/arraysMatchQ.js";
+export {arraysMatchQ} from "./src/arraysMatchQ";
 export {getSurroundingIndexes} from "./src/getSurroundingIndexes.js";
 export {checkIfNeighbors} from "./src/checkIfNeighbors.js";
 export {getTrie} from "./src/getTrie.js";

@@ -1,0 +1,83 @@
+import {transposeGrid} from "./transposeGrid.js";
+
+describe("transposeGrid", () => {
+  test("it swaps the rows and columns in a grid", () => {
+    const grid = [
+      ["A", "B", "", "", ""],
+      ["C", "", "", "D", "E"],
+      ["F", "G", "H", "I", ""],
+      ["", "J", "", "K", "L"],
+      ["M", "N", "", "", ""],
+    ];
+    const expectedGrid = [
+      ["A", "C", "F", "", "M"],
+      ["B", "", "G", "J", "N"],
+      ["", "", "H", "", ""],
+      ["", "D", "I", "K", ""],
+      ["", "E", "", "L", ""],
+    ];
+    expect(transposeGrid(grid)).toEqual(expectedGrid);
+  });
+
+  test("it works on grids that are wider than tall", () => {
+    const grid = [
+      [0, 1, 2, 10],
+      [3, 4, 5, 11],
+      [6, 7, 8, 12],
+    ];
+    const expected = [
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [10, 11, 12],
+    ];
+    expect(transposeGrid(grid)).toEqual(expected);
+  });
+
+  test("it works on grids that are taller than wide", () => {
+    const grid = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [9, 10, 11],
+    ];
+    const expected = [
+      [0, 3, 6, 9],
+      [1, 4, 7, 10],
+      [2, 5, 8, 11],
+    ];
+    expect(transposeGrid(grid)).toEqual(expected);
+  });
+
+  test("it works on empty grids", () => {
+    // @ts-expect-error intentionally testing empty input
+    const grid = [];
+    // @ts-expect-error intentionally testing empty input
+    const expected = [];
+    // @ts-expect-error intentionally testing empty input
+    expect(transposeGrid(grid)).toEqual(expected);
+  });
+
+  test("it rejects grids that have uneven row lengths", () => {
+    const grid = [
+      ["A", "", "C"],
+      ["", "B", "", "E"],
+      ["D", "", ""],
+    ];
+    expect(() => transposeGrid(grid)).toThrow(
+      "All of the rows in the grid must have the same length.",
+    );
+  });
+
+  test("it rejects grids with some empty rows", () => {
+    const grid = [["A", "", "C"], [], ["D", "", ""]];
+    expect(() => transposeGrid(grid)).toThrow(
+      "All of the rows in the grid must have the same length.",
+    );
+  });
+
+  test("it rejects grids with all empty rows", () => {
+    const grid = [[], [], []];
+    expect(() => transposeGrid(grid)).toThrow("Rows must not be empty.");
+  });
+});
