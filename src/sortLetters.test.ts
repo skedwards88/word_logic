@@ -1,5 +1,5 @@
 import {sortLettersBy, sortMethods} from "./sortLetters.js";
-import {Letter} from "./Types.js";
+import type {Letter} from "./Types.js";
 
 test("sort by alphabetical", () => {
   expect(

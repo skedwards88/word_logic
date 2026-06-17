@@ -1,17 +1,22 @@
 import {isKnown} from "./isKnown.js";
 import {transposeGrid} from "./transposeGrid.js";
-import type {Letter, TrieNode} from "./Types.js";
+import type {TrieNode} from "./Types.js";
 
-function getSurroundingLetterIndexes<T>({
+function getSurroundingLetterIndexes({
   startingIndex,
   grid,
   alreadyFoundIndexes,
 }: {
   startingIndex: [number, number];
-  grid: T[][];
+  grid: string[][];
   alreadyFoundIndexes: [number, number][];
-}) {
-  const surroundingIndexes = [
+}): [number, number][] {
+  const surroundingIndexes: [
+    [number, number],
+    [number, number],
+    [number, number],
+    [number, number],
+  ] = [
     [startingIndex[0] - 1, startingIndex[1]],
     [startingIndex[0] + 1, startingIndex[1]],
     [startingIndex[0], startingIndex[1] - 1],
@@ -37,25 +42,33 @@ function getSurroundingLetterIndexes<T>({
   return surroundingLetterIndexes;
 }
 
-function isSingleGroupingQ(grid) {
-  const numLetters = grid.flatMap((i) => i).filter((i) => i).length;
-
-  // start at any index with a letter
-  // recursively, check top,bottom,left,right of the letter for any connected letter
-  // to generate a list of all of the letters that are connected
-  // then compare with the indexes of all the letters to make sure the same
-  let startingIndex;
+function getFirstPopulatedIndex(
+  grid: string[][],
+): [number, number] | undefined {
   for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
     for (let colIndex = 0; colIndex < grid[rowIndex].length; colIndex++) {
       if (grid[rowIndex][colIndex]) {
-        startingIndex = [rowIndex, colIndex];
-        break;
+        return [rowIndex, colIndex];
       }
     }
-    if (startingIndex) {
-      break;
-    }
   }
+
+  return undefined;
+}
+
+function isSingleGroupingQ(grid: string[][]): boolean {
+  const numLetters = grid.flatMap((i) => i).filter((i) => i).length;
+
+  // start at an index with a letter
+  // recursively, check top,bottom,left,right of the letter for any connected letter
+  // to generate a list of all of the letters that are connected
+  // then compare with the indexes of all the letters to make sure the same
+  const startingIndex = getFirstPopulatedIndex(grid);
+
+  if (startingIndex === undefined) {
+    return false;
+  }
+
   let connectionsToCheckForConnections = getSurroundingLetterIndexes({
     startingIndex: startingIndex,
     grid: grid,
@@ -67,6 +80,10 @@ function isSingleGroupingQ(grid) {
   while (connectionsToCheckForConnections.length && count < 100) {
     count++;
     const surroundingIndex = connectionsToCheckForConnections.pop();
+
+    // TS is too dumb to realize that the connectionsToCheckForConnections.length ensures that this won't be undefined
+    if (surroundingIndex === undefined) break;
+
     const newSurroundingIndexes = getSurroundingLetterIndexes({
       startingIndex: surroundingIndex,
       grid: grid,
@@ -87,7 +104,7 @@ export function crosswordValidQ({
   trie,
   exceptedWords = [],
 }: {
-  grid: Letter[][];
+  grid: string[][];
   trie: TrieNode;
   exceptedWords?: string[];
 }): {gameIsSolved: boolean; reason: string} {
@@ -95,15 +112,14 @@ export function crosswordValidQ({
   if (!isSingleGrouping) {
     return {
       gameIsSolved: false,
-      reason: `All of the letters must connect`,
+      reason: "All of the letters must connect",
     };
   }
 
   const transposedGrid = transposeGrid(grid);
   const jointGrid = [...grid, ...transposedGrid];
   for (let rowIndex = 0; rowIndex < jointGrid.length; rowIndex++) {
-    let currentWord = "" as Iterable<Letter>;
-    currentWord = "R";
+    let currentWord = "";
     for (
       let characterIndex = 0;
       characterIndex < jointGrid[rowIndex].length;
