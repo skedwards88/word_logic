@@ -1,11 +1,12 @@
-import {getNLetters} from "./getNLetters";
+import {getNLetters} from "./getNLetters.js";
+import type {LetterQu} from "./Types.js";
 
 test("If fewer letters than the letter pool are requested, returns a subset of the letter pool", () => {
   const desiredNumLetters = 3;
-  const letterPool = ["A", "A", "B", "C", "D", "D", "D"];
+  const letterPool: LetterQu[] = ["A", "A", "B", "C", "D", "D", "D"];
 
   const selectedLetters = getNLetters(desiredNumLetters, letterPool);
-  let unselectedLetters = [...letterPool];
+  const unselectedLetters = [...letterPool];
   for (const letter of selectedLetters) {
     const index = unselectedLetters.indexOf(letter);
     if (index >= 0) {
@@ -21,10 +22,10 @@ test("If fewer letters than the letter pool are requested, returns a subset of t
 
 test("If more letters than the letter pool are requested, returns a subset of the letter pool in addition to multiples of the letter pool", () => {
   const desiredNumLetters = 17;
-  const letterPool = ["A", "A", "B", "C", "D", "D", "D"];
+  const letterPool: LetterQu[] = ["A", "A", "B", "C", "D", "D", "D"];
 
   const selectedLetters = getNLetters(desiredNumLetters, letterPool);
-  let unselectedLetters = [...letterPool, ...letterPool, ...letterPool];
+  const unselectedLetters = [...letterPool, ...letterPool, ...letterPool];
   for (const letter of selectedLetters) {
     const index = unselectedLetters.indexOf(letter);
     if (index >= 0) {
@@ -39,7 +40,7 @@ test("If more letters than the letter pool are requested, returns a subset of th
 });
 
 test("If the exact size of the letter pool is requested, returns the letter pool", () => {
-  const letterPool = ["A", "A", "B", "C", "D", "D", "D"];
+  const letterPool: LetterQu[] = ["A", "A", "B", "C", "D", "D", "D"];
   const desiredNumLetters = letterPool.length;
 
   const selectedLetters = getNLetters(desiredNumLetters, letterPool);
@@ -50,7 +51,7 @@ test("If the exact size of the letter pool is requested, returns the letter pool
 
 test("the subset returned is random (case where number of letters is < pool)", () => {
   const desiredNumLetters = 3;
-  const letterPool = [
+  const letterPool: LetterQu[] = [
     "A",
     "A",
     "A",
@@ -156,17 +157,19 @@ test("the subset returned is random (case where number of letters is < pool)", (
   ];
 
   const numberOfIterations = 10000;
-  const letterPoolCounts = letterPool.reduce(
+  const letterPoolCounts = letterPool.reduce<
+    Record<LetterQu | "total", number>
+  >(
     (dict, key) =>
       dict[key]
         ? {...dict, [key]: dict[key] + 1, total: dict.total + 1}
         : {...dict, [key]: 1, total: dict.total + 1},
-    {total: 0},
+    {total: 0} as Record<LetterQu | "total", number>,
   );
 
-  let iterationCounts = letterPool.reduce(
+  const iterationCounts = letterPool.reduce<Record<LetterQu | "total", number>>(
     (dict, key) => ({...dict, [key]: 0}),
-    {total: 0},
+    {total: 0} as Record<LetterQu | "total", number>,
   );
   for (let i = 0; i < numberOfIterations; i++) {
     const selectedLetters = getNLetters(desiredNumLetters, letterPool);
@@ -176,10 +179,13 @@ test("the subset returned is random (case where number of letters is < pool)", (
     }
   }
 
-  let diffs = [];
+  const diffs = [];
   for (const key in letterPoolCounts) {
-    const actualDistribution = iterationCounts[key] / iterationCounts.total;
-    const expectedDistribution = letterPoolCounts[key] / letterPoolCounts.total;
+    // TS is a bit dumb about not inferring the correct type for key
+    const actualDistribution =
+      iterationCounts[key as LetterQu | "total"] / iterationCounts.total;
+    const expectedDistribution =
+      letterPoolCounts[key as LetterQu | "total"] / letterPoolCounts.total;
     diffs.push(Math.abs(actualDistribution - expectedDistribution));
     // toBeCloseTo expected precision of 2 (second arg) means that expected difference <0.005
     expect(actualDistribution).toBeCloseTo(expectedDistribution, 2);
@@ -187,7 +193,7 @@ test("the subset returned is random (case where number of letters is < pool)", (
 });
 
 test("the subset returned is random (case where number of letters is > pool)", () => {
-  const letterPool = [
+  const letterPool: LetterQu[] = [
     "A",
     "A",
     "A",
@@ -294,17 +300,19 @@ test("the subset returned is random (case where number of letters is > pool)", (
   const desiredNumLetters = letterPool.length * 4.3;
 
   const numberOfIterations = 10000;
-  const letterPoolCounts = letterPool.reduce(
+  const letterPoolCounts = letterPool.reduce<
+    Record<LetterQu | "total", number>
+  >(
     (dict, key) =>
       dict[key]
         ? {...dict, [key]: dict[key] + 1, total: dict.total + 1}
         : {...dict, [key]: 1, total: dict.total + 1},
-    {total: 0},
+    {total: 0} as Record<LetterQu | "total", number>,
   );
 
-  let iterationCounts = letterPool.reduce(
+  const iterationCounts = letterPool.reduce<Record<LetterQu | "total", number>>(
     (dict, key) => ({...dict, [key]: 0}),
-    {total: 0},
+    {total: 0} as Record<LetterQu | "total", number>,
   );
   for (let i = 0; i < numberOfIterations; i++) {
     const selectedLetters = getNLetters(desiredNumLetters, letterPool);
@@ -314,10 +322,13 @@ test("the subset returned is random (case where number of letters is > pool)", (
     }
   }
 
-  let diffs = [];
+  const diffs = [];
   for (const key in letterPoolCounts) {
-    const actualDistribution = iterationCounts[key] / iterationCounts.total;
-    const expectedDistribution = letterPoolCounts[key] / letterPoolCounts.total;
+    // TS is a bit dumb about not inferring the correct type for key
+    const actualDistribution =
+      iterationCounts[key as LetterQu | "total"] / iterationCounts.total;
+    const expectedDistribution =
+      letterPoolCounts[key as LetterQu | "total"] / letterPoolCounts.total;
     diffs.push(Math.abs(actualDistribution - expectedDistribution));
     // toBeCloseTo expected precision of 2 (second arg) means that expected difference <0.005
     expect(actualDistribution).toBeCloseTo(expectedDistribution, 2);

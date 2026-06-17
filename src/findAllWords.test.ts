@@ -1,5 +1,6 @@
-import {findAllWords} from "./findAllWords";
-import {getTrie} from "./getTrie";
+import {findAllWords} from "./findAllWords.js";
+import {getTrie} from "./getTrie.js";
+import type {LetterQu} from "./Types.js";
 
 const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [
@@ -15,7 +16,7 @@ const uncommonWords = [
 const trie = getTrie(commonWords, uncommonWords);
 
 test("Easy mode, min length 4, square grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",
@@ -48,7 +49,7 @@ test("Easy mode, min length 4, square grid", () => {
 });
 
 test("Hard mode, min length 4, square grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",
@@ -82,7 +83,7 @@ test("Hard mode, min length 4, square grid", () => {
 });
 
 test("Easy mode, min length 3, square grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",
@@ -116,7 +117,7 @@ test("Easy mode, min length 3, square grid", () => {
 });
 
 test("Hard mode, min length 3, square grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",
@@ -150,7 +151,7 @@ test("Hard mode, min length 3, square grid", () => {
 });
 
 test("Easy mode, min length 4, wider grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",
@@ -187,7 +188,7 @@ test("Easy mode, min length 4, wider grid", () => {
 });
 
 test("Easy mode, min length 4, taller grid", () => {
-  const letters = [
+  const letters: LetterQu[] = [
     "O",
     "C",
     "QU",

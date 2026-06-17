@@ -1,4 +1,4 @@
-import {getSurroundingIndexes} from "./getSurroundingIndexes";
+import {getSurroundingIndexes} from "./getSurroundingIndexes.js";
 
 test("top left corner", () => {
   const surrounding = getSurroundingIndexes({

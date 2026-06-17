@@ -1,4 +1,4 @@
-import {shuffleArray} from "./shuffleArray";
+import {shuffleArray} from "./shuffleArray.js";
 import seedrandom from "seedrandom";
 
 describe("shuffleArray", () => {
@@ -13,7 +13,7 @@ describe("shuffleArray", () => {
     // This could be a flaky test.
     // Making a larger array or having multiple calls
     // would make that less likely.
-    let original = [];
+    let original: number[] = [];
     for (let index = 0; index < 1000; index++) {
       original = [...original, index];
     }

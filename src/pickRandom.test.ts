@@ -3,7 +3,7 @@ import {
   pickRandomIndexFromArray,
   pickRandomItemsFromArray,
   pickRandomIntBetween,
-} from "./pickRandom";
+} from "./pickRandom.js";
 import seedrandom from "seedrandom";
 
 describe("pickRandomItemFromArray", () => {

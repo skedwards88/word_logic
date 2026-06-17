@@ -1,4 +1,4 @@
-import {checkIfNeighbors} from "./checkIfNeighbors";
+import {checkIfNeighbors} from "./checkIfNeighbors.js";
 
 test("Zero is considered a value", () => {
   expect(

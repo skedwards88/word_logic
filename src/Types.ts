@@ -1,4 +1,4 @@
-import type {sortMethods} from "./sortLetters";
+import type {sortMethods} from "./sortLetters.js";
 
 export type LetterQu =
   | "A"
@@ -18,6 +18,7 @@ export type LetterQu =
   | "O"
   | "P"
   | "Qu"
+  | "QU"
   | "R"
   | "S"
   | "T"

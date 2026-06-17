@@ -1,5 +1,5 @@
-import {isKnown} from "./isKnown";
-import {getTrie} from "./getTrie";
+import {isKnown} from "./isKnown.js";
+import {getTrie} from "./getTrie.js";
 
 const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [

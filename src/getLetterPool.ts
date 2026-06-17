@@ -1,4 +1,4 @@
-import type {LetterQu} from "./Types";
+import type {LetterQu} from "./Types.js";
 
 export function getLetterPool(words: string[]): LetterQu[] {
   const letterDistribution: Record<string, number> = {};

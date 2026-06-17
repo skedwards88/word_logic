@@ -1,4 +1,4 @@
-import {transposeGrid} from "./transposeGrid";
+import {transposeGrid} from "./transposeGrid.js";
 
 describe("transposeGrid", () => {
   test("it swaps the rows and columns in a grid", () => {
@@ -20,12 +20,12 @@ describe("transposeGrid", () => {
   });
 
   test("it works on grids that are wider than tall", () => {
-    let grid = [
+    const grid = [
       [0, 1, 2, 10],
       [3, 4, 5, 11],
       [6, 7, 8, 12],
     ];
-    let expected = [
+    const expected = [
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
@@ -35,13 +35,13 @@ describe("transposeGrid", () => {
   });
 
   test("it works on grids that are taller than wide", () => {
-    let grid = [
+    const grid = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
       [9, 10, 11],
     ];
-    let expected = [
+    const expected = [
       [0, 3, 6, 9],
       [1, 4, 7, 10],
       [2, 5, 8, 11],
@@ -50,8 +50,11 @@ describe("transposeGrid", () => {
   });
 
   test("it works on empty grids", () => {
-    let grid = [];
-    let expected = [];
+    // @ts-expect-error intentionally testing empty input
+    const grid = [];
+    // @ts-expect-error intentionally testing empty input
+    const expected = [];
+    // @ts-expect-error intentionally testing empty input
     expect(transposeGrid(grid)).toEqual(expected);
   });
 

@@ -1,5 +1,5 @@
-import {arraysMatchQ} from "./arraysMatchQ";
-import type {Primitive} from "./Types";
+import {arraysMatchQ} from "./arraysMatchQ.js";
+import type {Primitive} from "./Types.js";
 
 test("True when arrays contain same items in same order", () => {
   const arrayA = ["CAT", "DOG", "ELEPHANT", 2];

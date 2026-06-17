@@ -1,5 +1,6 @@
 import {getSurroundingIndexes} from "./getSurroundingIndexes.js";
 import {isKnown} from "./isKnown.js";
+import type {Letter, LetterQu, TrieNode} from "./Types.js";
 
 export function findAllWordIndexes({
   letters,
@@ -9,16 +10,28 @@ export function findAllWordIndexes({
   maxWordLength = 30,
   easyMode,
   trie,
-}) {
-  let foundWordIndexes = [];
+}: {
+  letters: LetterQu[] | Letter[];
+  numColumns: number;
+  numRows: number;
+  minWordLength: number;
+  maxWordLength?: number;
+  easyMode: boolean;
+  trie: TrieNode;
+}): number[][] {
+  const foundWordIndexes: number[][] = [];
 
   const neighborIndexes = letters.map((_, index) =>
     getSurroundingIndexes({index: index, numColumns, numRows}),
   );
 
-  function checkSurrounding(currentIndex, wordIndexes, visitedIndexes) {
-    let surroundingIndexes = neighborIndexes[currentIndex];
-    for (let surroundingIndex of surroundingIndexes) {
+  function checkSurrounding(
+    currentIndex: number,
+    wordIndexes: number[],
+    visitedIndexes: number[],
+  ): void {
+    const surroundingIndexes = neighborIndexes[currentIndex];
+    for (const surroundingIndex of surroundingIndexes) {
       // if the index has already been used, skip
       if (visitedIndexes.includes(surroundingIndex)) {
         continue;
@@ -69,7 +82,15 @@ export function findAllWords({
   maxWordLength = 30,
   easyMode,
   trie,
-}) {
+}: {
+  letters: LetterQu[] | Letter[];
+  numColumns: number;
+  numRows: number;
+  minWordLength: number;
+  maxWordLength?: number;
+  easyMode: boolean;
+  trie: TrieNode;
+}): string[] {
   const foundWordIndexes = findAllWordIndexes({
     letters: letters,
     numColumns: numColumns,

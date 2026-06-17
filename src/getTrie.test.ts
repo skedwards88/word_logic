@@ -1,4 +1,4 @@
-import {getTrie} from "./getTrie";
+import {getTrie} from "./getTrie.js";
 
 const commonWords = ["WALK", "CAMP", "QUIET", "LET"];
 const uncommonWords = [

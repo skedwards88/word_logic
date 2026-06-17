@@ -1,4 +1,4 @@
-import {arrayToGrid} from "./arrayToGrid";
+import {arrayToGrid} from "./arrayToGrid.js";
 
 describe("arrayToGrid", () => {
   test("converts a 1D array to a 2D array", () => {
@@ -18,7 +18,9 @@ describe("arrayToGrid", () => {
   });
 
   test("empty arrays are returned as empty arrays", () => {
+    // @ts-expect-error intentionally testing untyped input
     const input = [];
+    // @ts-expect-error intentionally testing untyped input
     const output = arrayToGrid(input);
     expect(output).toEqual([]);
   });

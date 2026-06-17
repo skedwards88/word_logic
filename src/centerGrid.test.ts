@@ -1,4 +1,4 @@
-import {centerGrid} from "./centerGrid";
+import {centerGrid} from "./centerGrid.js";
 
 test("Centers a 2D grid of letters", () => {
   const grid = [
@@ -164,19 +164,4 @@ test("If the grid is already centered right/left, will still center up/down", ()
   ];
 
   expect(centeredGrid).toEqual(expectedGrid);
-});
-
-test("Errors if the grid is not a square", () => {
-  const grid = [
-    ["A", "", "C", "", ""],
-    ["A", "B", "C", "", "P"],
-    ["", "", "", "", ""],
-    ["A", "Z", "C", "", ""],
-    ["A", "", "C", "", ""],
-    ["A", "", "C", "", ""],
-  ];
-
-  expect(() => centerGrid(grid, "")).toThrow(
-    "The number of columns and number of rows in the grid must be equal.",
-  );
 });

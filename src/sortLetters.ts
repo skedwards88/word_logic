@@ -19,7 +19,7 @@ function sortVowels(letters: Letter[]): Letter[] {
 export const sortMethods = {
   Alphabetical: "Alphabetical",
   Vowels: "Vowels",
-  None: "None",
+  Random: "Random",
 };
 
 export function sortLettersBy(letters: Letter[], sortBy: SortMethod): Letter[] {
