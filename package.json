@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/skedwards88/word_logic#readme",
   "dependencies": {
-    "lodash.clonedeep": "^4.5.0",
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {
@@ -32,7 +31,6 @@
     "@babel/preset-env": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
     "@types/jest": "^30.0.0",
-    "@types/lodash.clonedeep": "^4.5.9",
     "@types/seedrandom": "^3.0.8",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "babel-jest": "^30.4.1",
