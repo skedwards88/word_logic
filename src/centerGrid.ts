@@ -4,7 +4,7 @@ import {transposeGrid} from "./transposeGrid.js";
 export function centerGrid<T>(grid: T[][], emptyValue: T): T[][] {
   let shiftedGrid = structuredClone(grid);
 
-  const emptyRow = Array(grid.length).fill(emptyValue);
+  const emptyRow = Array<T>(grid.length).fill(emptyValue);
 
   // determine the number of current empty edge rows
   // and the number of empty edge rows when centered
@@ -25,9 +25,9 @@ export function centerGrid<T>(grid: T[][], emptyValue: T): T[][] {
     shiftedGrid.length - maxShiftDown,
   );
   shiftedGrid = [
-    ...Array(newMaxShiftUp).fill(emptyRow),
+    ...Array<T[]>(newMaxShiftUp).fill(emptyRow),
     ...cutTopBottom,
-    ...Array(newMaxShiftDown).fill(emptyRow),
+    ...Array<T[]>(newMaxShiftDown).fill(emptyRow),
   ];
 
   // transpose
@@ -39,9 +39,9 @@ export function centerGrid<T>(grid: T[][], emptyValue: T): T[][] {
     shiftedGrid.length - maxShiftRight,
   );
   shiftedGrid = [
-    ...Array(newMaxShiftLeft).fill(emptyRow),
+    ...Array<T[]>(newMaxShiftLeft).fill(emptyRow),
     ...cutLeftRight,
-    ...Array(newMaxShiftRight).fill(emptyRow),
+    ...Array<T[]>(newMaxShiftRight).fill(emptyRow),
   ];
 
   // un transpose

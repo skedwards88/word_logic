@@ -50,10 +50,8 @@ describe("transposeGrid", () => {
   });
 
   test("it works on empty grids", () => {
-    // @ts-expect-error intentionally testing empty input
-    const grid = [];
-    // @ts-expect-error intentionally testing empty input
-    const expected = [];
+    const grid: number[] = [];
+    const expected: number[] = [];
     // @ts-expect-error intentionally testing empty input
     expect(transposeGrid(grid)).toEqual(expected);
   });
