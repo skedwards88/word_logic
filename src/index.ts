@@ -21,3 +21,5 @@ export {
 export {getMaxShifts} from "./getMaxShifts.js";
 export {centerGrid} from "./centerGrid.js";
 export {arrayToGrid} from "./arrayToGrid.js";
+export {indexToColumn} from "./indexToColumn.js";
+export {indexToRow} from "./indexToRow.js";
