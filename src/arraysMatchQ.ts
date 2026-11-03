@@ -1,6 +1,10 @@
 export function arraysMatchQ<
   T extends string | number | boolean | null | undefined,
 >(arrayA: T[], arrayB: T[]): boolean {
+  if (!Array.isArray(arrayA) || !Array.isArray(arrayB)) {
+    return false;
+  }
+
   if (arrayA.length !== arrayB.length) {
     return false;
   }

@@ -25,6 +25,16 @@ test("False when array is subset of other", () => {
   expect(arraysMatchQ(arrayB, arrayA)).toEqual(false);
 });
 
+test("False when not an array", () => {
+  const arrayA = "CAT";
+  const arrayB = ["C", "A", "T"];
+
+  // @ts-expect-error testing invalid input
+  expect(arraysMatchQ(arrayA, arrayB)).toEqual(false);
+  // @ts-expect-error testing invalid input
+  expect(arraysMatchQ(arrayB, arrayA)).toEqual(false);
+});
+
 test("Does not consider deeper equalities", () => {
   const arrayA = ["CAT", "DOG", "ELEPHANT", 2, {item: "skates"}];
   const arrayB = ["CAT", "DOG", "ELEPHANT", 2, {item: "skates"}];
