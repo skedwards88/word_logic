@@ -10,7 +10,8 @@
     "eslint": "npx eslint --ignore-pattern .gitignore . --fix",
     "tslint": "npx tsc --noEmit",
     "prettier": "npx prettier --write .",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "npm run eslint && npm run tslint && npm run prettier"
   },
   "repository": {
     "type": "git",
