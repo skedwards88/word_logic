@@ -45,8 +45,8 @@ export function pickRandomItemsFromArray<T>(
 }
 
 // return a random index from a given array
-export function pickRandomIndexFromArray<T>(
-  inputArray: T[],
+export function pickRandomIndexFromArray(
+  inputArray: readonly unknown[],
   pseudoRandomGenerator?: seedrandom.PRNG,
 ): number {
   return Math.floor(getRandom(pseudoRandomGenerator) * inputArray.length);

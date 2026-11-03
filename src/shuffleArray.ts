@@ -1,10 +1,11 @@
 import type seedrandom from "seedrandom";
 
-export function shuffleArray<T>(
-  array: T[],
+export function shuffleArray<T extends readonly unknown[]>(
+  array: T,
   pseudoRandomGenerator?: seedrandom.PRNG,
-): T[] {
-  const shuffledArray = array.slice();
+): T {
+  // const shuffledArray = array.slice();
+  const shuffledArray = array.slice() as unknown as T & unknown[];
 
   // Swap each value in an array, starting at the end of the array, with a position equal or earlier in the array.
   for (let index = shuffledArray.length - 1; index > 0; index--) {
