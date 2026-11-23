@@ -1,27 +1,56 @@
 import {indexToColumn} from "./indexToColumn.js";
 
 describe("indexToColumn", () => {
-  test("first index", () => {
-    expect(indexToColumn(0, 5)).toBe(0);
+  test("returns the column index of a given index (grid size 4)", () => {
+    const indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const gridSize = 4;
+    const expectedColumns = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3];
+    const result = indexes.map((index) => indexToColumn(index, gridSize));
+    expect(result).toStrictEqual(expectedColumns);
   });
 
-  test("first row middle column", () => {
-    expect(indexToColumn(3, 5)).toBe(3);
+  test("returns the column index of a given index (grid size 5)", () => {
+    const indexes = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      21, 22, 23, 24,
+    ];
+    const gridSize = 5;
+    const expectedColumns = [
+      0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4,
+    ];
+    const result = indexes.map((index) => indexToColumn(index, gridSize));
+    expect(result).toStrictEqual(expectedColumns);
   });
 
-  test("first row last column", () => {
-    expect(indexToColumn(4, 5)).toBe(4);
+  test("returns the column index of a given index (grid size 1)", () => {
+    const index = 0;
+    const gridSize = 1;
+    const expectedColumn = 0;
+    const result = indexToColumn(index, gridSize);
+    expect(result).toStrictEqual(expectedColumn);
   });
 
-  test("middle index", () => {
-    expect(indexToColumn(5, 5)).toBe(0);
+  test("errors if index exceeds gridSize", () => {
+    const index = 4;
+    const gridSize = 2;
+    expect(() => indexToColumn(index, gridSize)).toThrow(
+      "Index is not within grid size",
+    );
   });
 
-  test("middle row middle column", () => {
-    expect(indexToColumn(8, 5)).toBe(3);
+  test("errors if index is negative", () => {
+    const index = -1;
+    const gridSize = 2;
+    expect(() => indexToColumn(index, gridSize)).toThrow(
+      "Index is not within grid size",
+    );
   });
 
-  test("middle row last column", () => {
-    expect(indexToColumn(9, 5)).toBe(4);
+  test("errors if gridSize is 0", () => {
+    const index = 0;
+    const gridSize = 0;
+    expect(() => indexToColumn(index, gridSize)).toThrow(
+      "Index is not within grid size",
+    );
   });
 });
