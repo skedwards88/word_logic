@@ -3,12 +3,10 @@
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",
-    "lib": ["es2021", "dom"],
     "types": ["jest", "node"],
-    "target": "es6",
+    "target": "es2023",
     "module": "NodeNext",
-    "moduleResolution": "nodenext", // or "node16" / "nodenext"
-
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
