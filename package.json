@@ -2,8 +2,17 @@
   "name": "@skedwards88/word_logic",
   "version": "4.0.13",
   "description": "A collection of word-related functions.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -11,6 +20,7 @@
     "tslint": "npx tsc --noEmit",
     "prettier": "npx prettier --write .",
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "lint": "npm run eslint && npm run tslint && npm run prettier"
   },
   "repository": {
