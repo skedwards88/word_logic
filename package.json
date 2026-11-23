@@ -19,6 +19,7 @@
     "eslint": "npx eslint --ignore-pattern .gitignore . --fix",
     "tslint": "npx tsc --noEmit",
     "prettier": "npx prettier --write .",
+    "prebuild": "node autogenerateIndex.js",
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "lint": "npm run eslint && npm run tslint && npm run prettier"
