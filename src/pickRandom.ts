@@ -44,6 +44,21 @@ export function pickRandomItemsFromArray<T>(
   return items;
 }
 
+// return n random elements from a given array (with replacement)
+export function pickRandomItemsFromArrayWithReplacement<T>(
+  inputArray: T[],
+  numberOfItems: number,
+  pseudoRandomGenerator?: seedrandom.PRNG,
+): T[] {
+  const items: T[] = [];
+  for (let index = 0; index < numberOfItems; index++) {
+    const item = pickRandomItemFromArray(inputArray, pseudoRandomGenerator);
+    items.push(item);
+  }
+
+  return items;
+}
+
 // return a random index from a given array
 export function pickRandomIndexFromArray(
   inputArray: readonly unknown[],

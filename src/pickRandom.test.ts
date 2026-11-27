@@ -3,6 +3,7 @@ import {
   pickRandomIndexFromArray,
   pickRandomItemsFromArray,
   pickRandomIntBetween,
+  pickRandomItemsFromArrayWithReplacement,
 } from "./pickRandom.js";
 import seedrandom from "seedrandom";
 
@@ -246,6 +247,149 @@ describe("pickRandomItemsFromArray", () => {
   test("returns an empty array if the input array is empty", () => {
     const inputArray: unknown[] = [];
     const randomElement = pickRandomItemsFromArray(inputArray, 3);
+    expect(randomElement).toEqual([]);
+  });
+});
+
+describe("pickRandomItemsFromArrayWithReplacement", () => {
+  test("returns n elements from the input array", () => {
+    const inputArray = ["act", "bat", "cat", "dog", "fish"];
+    const randomElements = pickRandomItemsFromArrayWithReplacement(
+      inputArray,
+      3,
+    );
+
+    expect(inputArray).toEqual(expect.arrayContaining(randomElements));
+    expect(randomElements.length).toBe(3);
+  });
+
+  test("the number of requested items can exceed the length of the input array", () => {
+    const requested = 30;
+    const inputArray = ["act", "bat", "cat", "dog", "fish"];
+    const randomElements = pickRandomItemsFromArrayWithReplacement(
+      inputArray,
+      requested,
+    );
+
+    expect(randomElements.length).toBe(requested);
+  });
+
+  test("returns random values", () => {
+    const inputArray = [
+      "act",
+      "bat",
+      "cat",
+      "dog",
+      "fish",
+      "monkey",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+    ];
+    const numberOfItems = 3;
+    const numberOfIterations = 1000;
+    const expectedDistribution = 1 / inputArray.length;
+    const counts: Record<string | number, number> = inputArray.reduce(
+      (dict, key) => ({...dict, [key]: 0}),
+      {},
+    );
+
+    for (let i = 0; i < numberOfIterations; i++) {
+      const items = pickRandomItemsFromArrayWithReplacement(
+        inputArray,
+        numberOfItems,
+      );
+      for (const item of items) {
+        counts[item] = counts[item] + 1;
+      }
+    }
+
+    for (const key in counts) {
+      const actualDistribution =
+        counts[key] / (numberOfIterations * numberOfItems);
+      expect(actualDistribution).toBeCloseTo(expectedDistribution, 1);
+    }
+  });
+
+  test("if a seeded pseudorandom generator is provided, the output is always the same", () => {
+    const inputArray = [
+      "act",
+      "bat",
+      "cat",
+      "dog",
+      "fish",
+      "monkey",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+    ];
+    const seed = "test";
+    const numberOfIterations = 100;
+    const numberOfItems = 3;
+
+    const items = [];
+    for (let i = 0; i < numberOfIterations; i++) {
+      const pseudoRandomGenerator = seedrandom(seed);
+      const output = pickRandomItemsFromArrayWithReplacement(
+        inputArray,
+        numberOfItems,
+        pseudoRandomGenerator,
+      );
+      items.push(...output);
+    }
+
+    const uniqueItems = new Set(items);
+    expect(uniqueItems.size).toEqual(numberOfItems);
+  });
+
+  test("returns an empty array if the input array is empty", () => {
+    const inputArray: unknown[] = [];
+    const randomElement = pickRandomItemsFromArrayWithReplacement(
+      inputArray,
+      3,
+    );
     expect(randomElement).toEqual([]);
   });
 });
